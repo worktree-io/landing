@@ -6,7 +6,8 @@
       "Bash(npx centy:*)",
       "Bash(pnpm dlx centy:*)",
       "Bash(centy:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(gh issue list:*)"
     ]
   },
   "hooks": {
