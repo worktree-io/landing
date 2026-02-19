@@ -101,11 +101,11 @@ function GitHubMockup() {
           <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8V1.5Z" />
         </svg>
         <span style={{ color: "#58a6ff", fontSize: 13, fontWeight: 600 }}>
-          worktree-io
+          centy-io
         </span>
         <span style={{ color: "#8b949e" }}>/</span>
         <span style={{ color: "#58a6ff", fontSize: 13, fontWeight: 600 }}>
-          runner
+          centy-daemon
         </span>
         <span
           style={{
@@ -119,7 +119,7 @@ function GitHubMockup() {
             fontWeight: 600,
           }}
         >
-          Issue #142
+          Issue #31
         </span>
       </div>
 
@@ -132,11 +132,11 @@ function GitHubMockup() {
         }}
       >
         <div style={{ color: "#e6edf3", fontWeight: 600, fontSize: 15 }}>
-          Fix auth token refresh race condition
+          Cannot close issue - &quot;No issue found&quot; error despite file existing
         </div>
         <div style={{ color: "#8b949e", fontSize: 12, marginTop: 4 }}>
           Opened 2 hours ago by{" "}
-          <span style={{ color: "#58a6ff" }}>@dev-alice</span>
+          <span style={{ color: "#58a6ff" }}>@bluedotiya</span>
         </div>
       </div>
 
@@ -204,7 +204,7 @@ function GitHubMockup() {
             A workspace is ready for this issue.
           </p>
           <Link
-            href="/open?owner=worktree-io&repo=runner&issue=142"
+            href="/open?owner=centy-io&repo=centy-daemon&issue=31"
             className="anim-glow"
             style={{
               display: "inline-flex",
