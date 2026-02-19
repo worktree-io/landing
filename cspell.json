@@ -1,0 +1,16 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Worktree",
+    "Geist"
+  ],
+  "ignorePaths": [
+    "node_modules",
+    ".next",
+    "out",
+    "package-lock.json",
+    ".centy/.centy-manifest.json"
+  ],
+  "import": [".centy/cspell.json"]
+}
