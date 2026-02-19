@@ -48,7 +48,7 @@ function Nav() {
             fontFamily: "var(--font-syne, sans-serif)",
             fontSize: "0.8125rem",
             fontWeight: 600,
-            color: "#68687a",
+            color: "#9090a8",
             textDecoration: "none",
             display: "flex",
             alignItems: "center",
@@ -108,7 +108,7 @@ function WorkspaceResult() {
         </span>
       </div>
       <div style={{ padding: "14px 16px", lineHeight: 1.9 }}>
-        <div style={{ color: "#68687a" }}>
+        <div style={{ color: "#9090a8" }}>
           <span style={{ color: "#a78bfa" }}>$</span> worktree open
         </div>
         <div style={{ color: "#4ade80" }}>
@@ -116,7 +116,7 @@ function WorkspaceResult() {
         </div>
         <div style={{ color: "#4ade80" }}>
           {"  "}✓ Creating worktree{"   "}
-          <span style={{ color: "#68687a" }}>~/worktrees/centy-daemon/issue-31</span>
+          <span style={{ color: "#9090a8" }}>~/worktrees/centy-daemon/issue-31</span>
         </div>
         <div style={{ color: "#4ade80" }}>
           {"  "}✓ Opening VS Code
@@ -378,7 +378,7 @@ function Hero() {
             className="anim-fade-up d-200"
             style={{
               fontSize: "1.0625rem",
-              color: "#68687a",
+              color: "#9090a8",
               lineHeight: 1.7,
               maxWidth: 420,
               marginBottom: 36,
@@ -537,7 +537,7 @@ function HowItWorks() {
     const pillStyle = {
       fontFamily: "var(--font-jetbrains-mono, monospace)",
       fontSize: "0.75rem",
-      color: "#68687a",
+      color: "#9090a8",
       background: "#141418",
       border: "1px solid #1c1c24",
       borderRadius: 4,
@@ -596,7 +596,7 @@ function HowItWorks() {
         <p
           style={{
             fontSize: "0.875rem",
-            color: "#68687a",
+            color: "#9090a8",
             lineHeight: 1.7,
             marginBottom: 16,
           }}
@@ -628,7 +628,7 @@ function HowItWorks() {
     fontWeight: 700,
     letterSpacing: "0.08em",
     textTransform: "uppercase",
-    color: "#68687a",
+    color: "#9090a8",
     marginBottom: 14,
   };
 
@@ -748,7 +748,7 @@ function EditorSection() {
           <p
             style={{
               fontSize: "0.9375rem",
-              color: "#68687a",
+              color: "#9090a8",
               lineHeight: 1.7,
               maxWidth: 380,
             }}
@@ -778,7 +778,7 @@ function EditorSection() {
                   fontFamily: "var(--font-syne, sans-serif)",
                   fontSize: "0.875rem",
                   fontWeight: 600,
-                  color: i === 0 ? "#ebebef" : "#68687a",
+                  color: i === 0 ? "#ebebef" : "#9090a8",
                 }}
               >
                 {c.editor}
@@ -923,7 +923,7 @@ function InstallSection() {
                 gap: 8,
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#68687a">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#9090a8">
                 <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1 17.93V18a1 1 0 0 0-1-1H8a3 3 0 0 1-3-3v-.5l3.5-3.5A1 1 0 0 0 9 9V7.5L7.5 6H6a1 1 0 0 1-1-1v-.07A8 8 0 0 1 12 4a8.07 8.07 0 0 1 2 .26V5a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V5.8A8 8 0 0 1 19.93 11H19a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.92A8 8 0 0 1 11 19.93z" />
               </svg>
               <span
@@ -989,7 +989,7 @@ function InstallSection() {
                 gap: 8,
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#68687a">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#9090a8">
                 <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
               </svg>
               <span
@@ -1069,7 +1069,7 @@ function InstallSection() {
             <p
               style={{
                 fontSize: "0.8125rem",
-                color: "#68687a",
+                color: "#9090a8",
                 marginTop: 8,
                 lineHeight: 1.6,
               }}
@@ -1151,7 +1151,7 @@ function ActionSection() {
           <p
             style={{
               fontSize: "0.9375rem",
-              color: "#68687a",
+              color: "#9090a8",
               lineHeight: 1.7,
             }}
           >

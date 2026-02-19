@@ -26,7 +26,7 @@ export function CopyButton({ text }: { text: string }) {
         fontFamily: "var(--font-syne, sans-serif)",
         fontSize: "0.75rem",
         fontWeight: 600,
-        color: copied ? "#a78bfa" : "#68687a",
+        color: copied ? "#a78bfa" : "#9090a8",
         cursor: "pointer",
         transition: "color 0.15s, border-color 0.15s",
         flexShrink: 0,

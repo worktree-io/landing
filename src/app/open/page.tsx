@@ -49,7 +49,7 @@ function IssueCard({ params }: { params: IssueParams }) {
           style={{
             fontFamily: "var(--font-syne, sans-serif)",
             fontSize: "0.8125rem",
-            color: "#68687a",
+            color: "#9090a8",
           }}
         >
           <span style={{ color: "#ebebef", fontWeight: 600 }}>{params.owner}</span>
@@ -141,7 +141,7 @@ function InstallGuide() {
           <p
             style={{
               fontSize: "0.8rem",
-              color: "#68687a",
+              color: "#9090a8",
               marginTop: 8,
               lineHeight: 1.6,
             }}
@@ -284,7 +284,7 @@ export default function OpenPage() {
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path
                     d="M10 6v5M10 14h.01M19 10A9 9 0 1 1 1 10a9 9 0 0 1 18 0Z"
-                    stroke="#68687a"
+                    stroke="#9090a8"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                   />
@@ -305,7 +305,7 @@ export default function OpenPage() {
               <p
                 style={{
                   fontSize: "0.875rem",
-                  color: "#68687a",
+                  color: "#9090a8",
                   lineHeight: 1.7,
                   marginBottom: 24,
                 }}
@@ -391,7 +391,7 @@ export default function OpenPage() {
                       <div
                         style={{
                           fontSize: "0.8125rem",
-                          color: "#68687a",
+                          color: "#9090a8",
                           marginTop: 2,
                         }}
                       >
@@ -439,7 +439,7 @@ export default function OpenPage() {
                       <div
                         style={{
                           fontSize: "0.8125rem",
-                          color: "#68687a",
+                          color: "#9090a8",
                           marginTop: 2,
                         }}
                       >
@@ -466,7 +466,7 @@ export default function OpenPage() {
                     <p
                       style={{
                         fontSize: "0.8125rem",
-                        color: "#68687a",
+                        color: "#9090a8",
                         marginBottom: 14,
                         lineHeight: 1.6,
                       }}
@@ -515,7 +515,7 @@ export default function OpenPage() {
                       gap: 5,
                       transition: "color 0.15s",
                     }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#68687a")}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#9090a8")}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#3e3e50")}
                   >
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
@@ -601,7 +601,7 @@ export default function OpenPage() {
                 </h1>
                 {params && (
                   <p
-                    style={{ fontSize: "0.8125rem", color: "#68687a", lineHeight: 1.6 }}
+                    style={{ fontSize: "0.8125rem", color: "#9090a8", lineHeight: 1.6 }}
                   >
                     Once installed, come back and click the issue link again.
                   </p>
