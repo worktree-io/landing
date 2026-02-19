@@ -1,6 +1,12 @@
 {
   "permissions": {
-    "allow": ["Bash(centy create issue:*)", "Bash(uuidgen:*)"]
+    "allow": [
+      "Bash(centy create issue:*)",
+      "Bash(uuidgen:*)",
+      "Bash(npx centy:*)",
+      "Bash(pnpm dlx centy:*)",
+      "Bash(centy:*)"
+    ]
   },
   "hooks": {
     "PreToolUse": [
