@@ -22,7 +22,9 @@
       "Bash(for:*)",
       "Bash(do uuidgen)",
       "Bash(done)",
-      "Bash(gh run list:*)"
+      "Bash(gh run list:*)",
+      "Bash(python3:*)",
+      "Bash(gh run view:*)"
     ],
     "deny": ["Bash(gh issue create:*)"]
   },
