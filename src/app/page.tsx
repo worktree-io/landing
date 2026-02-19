@@ -3,6 +3,8 @@ import { CopyButton } from "./copy-button";
 import { GITHUB_URL } from "@/lib/github-url";
 import { INSTALL_CMD } from "@/lib/install-cmd";
 
+const RUNNER_URL = "https://github.com/worktree-io/runner/releases/latest/download";
+
 /* Nav */
 function Nav() {
   return (
@@ -721,13 +723,29 @@ function InstallSection() {
                 <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
               <a
-                href="https://github.com/worktree-io/runner/releases"
+                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-macos-aarch64.tar.gz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent"
                 style={{ width: "100%", justifyContent: "center" }}
               >
-                Download .dmg
+                Apple Silicon .tar.gz
+              </a>
+              <a
+                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-macos-x86_64.tar.gz"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  marginTop: 8,
+                  fontFamily: "var(--font-syne, sans-serif)",
+                  fontSize: "0.75rem",
+                  color: "#3e3e50",
+                  textDecoration: "none",
+                }}
+              >
+                Intel Mac
               </a>
             </div>
           </div>
@@ -768,13 +786,29 @@ function InstallSection() {
                 <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
               <a
-                href="https://github.com/worktree-io/runner/releases"
+                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-linux-x86_64.tar.gz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-ghost"
                 style={{ width: "100%", justifyContent: "center" }}
               >
-                Download .tar.gz
+                x86_64 .tar.gz
+              </a>
+              <a
+                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-linux-aarch64.tar.gz"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  marginTop: 8,
+                  fontFamily: "var(--font-syne, sans-serif)",
+                  fontSize: "0.75rem",
+                  color: "#3e3e50",
+                  textDecoration: "none",
+                }}
+              >
+                ARM64
               </a>
             </div>
           </div>
@@ -815,13 +849,13 @@ function InstallSection() {
                 <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
               <a
-                href="https://github.com/worktree-io/runner/releases"
+                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-windows-x86_64.zip"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-ghost"
                 style={{ width: "100%", justifyContent: "center" }}
               >
-                Download .msi
+                Download .zip
               </a>
             </div>
           </div>
