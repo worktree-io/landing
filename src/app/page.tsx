@@ -723,7 +723,7 @@ function InstallSection() {
                 <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
               <a
-                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-macos-aarch64.tar.gz"
+                href={`${RUNNER_URL}/worktree-macos-aarch64.tar.gz`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-accent"
@@ -732,7 +732,7 @@ function InstallSection() {
                 Apple Silicon .tar.gz
               </a>
               <a
-                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-macos-x86_64.tar.gz"
+                href={`${RUNNER_URL}/worktree-macos-x86_64.tar.gz`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -786,7 +786,7 @@ function InstallSection() {
                 <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
               <a
-                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-linux-x86_64.tar.gz"
+                href={`${RUNNER_URL}/worktree-linux-x86_64.tar.gz`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-ghost"
@@ -795,7 +795,7 @@ function InstallSection() {
                 x86_64 .tar.gz
               </a>
               <a
-                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-linux-aarch64.tar.gz"
+                href={`${RUNNER_URL}/worktree-linux-aarch64.tar.gz`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -849,7 +849,7 @@ function InstallSection() {
                 <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
               <a
-                href="https://github.com/worktree-io/runner/releases/latest/download/worktree-windows-x86_64.zip"
+                href={`${RUNNER_URL}/worktree-windows-x86_64.zip`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-ghost"
