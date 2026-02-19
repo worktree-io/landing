@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CopyButton } from "./copy-button";
 import { GITHUB_URL } from "@/lib/github-url";
 import { INSTALL_CMD } from "@/lib/install-cmd";
 
@@ -918,6 +919,199 @@ function InstallSection() {
   );
 }
 
+/* GitHub Action setup */
+const WORKFLOW_YAML = `name: Worktree
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: worktree-io/action@v1`;
+
+function ActionSection() {
+  return (
+    <section
+      id="action"
+      style={{
+        padding: "80px 24px",
+        borderTop: "1px solid #1c1c24",
+        background: "#0d0d10",
+      }}
+    >
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ maxWidth: 620, marginBottom: 36 }}>
+          <p
+            style={{
+              fontFamily: "var(--font-syne, sans-serif)",
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "#a78bfa",
+              marginBottom: 12,
+            }}
+          >
+            GitHub Action
+          </p>
+          <h2
+            style={{
+              fontFamily: "var(--font-syne, sans-serif)",
+              fontWeight: 700,
+              fontSize: "clamp(1.5rem, 3vw, 2rem)",
+              letterSpacing: "-0.025em",
+              color: "#ebebef",
+              marginBottom: 16,
+            }}
+          >
+            One file. Done.
+          </h2>
+          <p
+            style={{
+              fontSize: "0.9375rem",
+              color: "#68687a",
+              lineHeight: 1.7,
+            }}
+          >
+            Add this workflow to your repo. The Action posts an{" "}
+            <span style={{ color: "#ebebef" }}>"Open workspace"</span> comment
+            on every new issue — no secrets, no config.
+          </p>
+        </div>
+
+        <div style={{ maxWidth: 620 }}>
+          {/* Code block */}
+          <div
+            style={{
+              border: "1px solid rgba(167,139,250,0.2)",
+              borderRadius: 10,
+              overflow: "hidden",
+              background: "rgba(167,139,250,0.03)",
+            }}
+          >
+            {/* Header row */}
+            <div
+              style={{
+                padding: "10px 16px",
+                borderBottom: "1px solid rgba(167,139,250,0.12)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 12,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  minWidth: 0,
+                }}
+              >
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                  <rect
+                    x="1"
+                    y="1"
+                    width="11"
+                    height="11"
+                    rx="2"
+                    stroke="#a78bfa"
+                    strokeWidth="1.2"
+                  />
+                  <path
+                    d="M4 5h5M4 7.5h3"
+                    stroke="#a78bfa"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <code
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono, monospace)",
+                    fontSize: "0.75rem",
+                    color: "#a78bfa",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  .github/workflows/worktree.yml
+                </code>
+              </div>
+              <CopyButton text={WORKFLOW_YAML} />
+            </div>
+
+            {/* YAML */}
+            <pre
+              style={{
+                fontFamily: "var(--font-jetbrains-mono, monospace)",
+                fontSize: "0.8125rem",
+                lineHeight: 1.65,
+                color: "#ebebef",
+                padding: "20px 24px",
+                overflowX: "auto",
+                margin: 0,
+              }}
+            >
+              {WORKFLOW_YAML}
+            </pre>
+          </div>
+
+          {/* Caption */}
+          <div
+            style={{
+              marginTop: 14,
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 10,
+              paddingLeft: 2,
+            }}
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              style={{ marginTop: 2, flexShrink: 0 }}
+            >
+              <circle cx="7" cy="7" r="5.5" stroke="#3e3e50" strokeWidth="1.2" />
+              <path
+                d="M7 6.5v3M7 4.5v.5"
+                stroke="#3e3e50"
+                strokeWidth="1.3"
+                strokeLinecap="round"
+              />
+            </svg>
+            <p
+              style={{
+                fontSize: "0.8125rem",
+                color: "#3e3e50",
+                lineHeight: 1.6,
+              }}
+            >
+              Commit this file to{" "}
+              <code
+                style={{
+                  fontFamily: "var(--font-jetbrains-mono, monospace)",
+                  fontSize: "0.75rem",
+                }}
+              >
+                .github/workflows/
+              </code>{" "}
+              in your repo. GitHub will run it automatically — no further setup
+              needed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* Footer */
 function Footer() {
   return (
@@ -982,6 +1176,7 @@ export default function Home() {
       <HowItWorks />
       <EditorSection />
       <InstallSection />
+      <ActionSection />
       <Footer />
     </div>
   );
