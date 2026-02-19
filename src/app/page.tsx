@@ -257,13 +257,10 @@ function Hero() {
         }}
       />
       <div
+        className="hero-grid"
         style={{
           maxWidth: 1100,
           margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 64,
-          alignItems: "center",
         }}
       >
         {/* Copy */}
@@ -460,13 +457,7 @@ function HowItWorks() {
           </h2>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 2,
-          }}
-        >
+        <div className="steps-grid">
           {steps.map((step, i) => (
             <div
               key={step.n}
@@ -567,13 +558,10 @@ function EditorSection() {
       }}
     >
       <div
+        className="editor-grid"
         style={{
           maxWidth: 1100,
           margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 64,
-          alignItems: "start",
         }}
       >
         <div>
@@ -695,13 +683,7 @@ function InstallSection() {
           Install Worktree
         </h2>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 16,
-          }}
-        >
+        <div className="install-grid">
           {/* macOS */}
           <div
             style={{
@@ -1117,12 +1099,10 @@ function Footer() {
   return (
     <footer style={{ borderTop: "1px solid #1c1c24", padding: "24px" }}>
       <div
+        className="footer-inner"
         style={{
           maxWidth: 1100,
           margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
         }}
       >
         <span
@@ -1136,7 +1116,7 @@ function Footer() {
         >
           Worktree
         </span>
-        <div style={{ display: "flex", gap: 24 }}>
+        <div className="footer-nav">
           {[
             { label: "GitHub", href: GITHUB_URL },
             { label: "MIT License", href: "#" },
