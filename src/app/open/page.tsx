@@ -24,14 +24,6 @@ function buildWorktreeUrl(p: IssueParams): string {
   return `worktree://open?${q.toString()}`;
 }
 
-function detectPlatform(): "mac" | "linux" | "windows" {
-  if (typeof navigator === "undefined") return "mac";
-  const ua = navigator.userAgent.toLowerCase();
-  if (ua.includes("win")) return "windows";
-  if (ua.includes("linux")) return "linux";
-  return "mac";
-}
-
 /* ─── sub-components ──────────────────────────────────────────────────── */
 function IssueCard({ params }: { params: IssueParams }) {
   return (
@@ -95,40 +87,6 @@ function IssueCard({ params }: { params: IssueParams }) {
 }
 
 function InstallGuide() {
-  const platform = detectPlatform();
-
-  const platforms: Array<{
-    id: "mac" | "linux" | "windows";
-    label: string;
-    cmd: string;
-    prompt: string;
-    dl: string;
-  }> = [
-    {
-      id: "mac",
-      label: "macOS",
-      cmd: INSTALL_CMD,
-      prompt: "$",
-      dl: "Download .dmg",
-    },
-    {
-      id: "linux",
-      label: "Linux",
-      cmd: INSTALL_CMD,
-      prompt: "$",
-      dl: "Download .tar.gz",
-    },
-    {
-      id: "windows",
-      label: "Windows",
-      cmd: INSTALL_CMD,
-      prompt: "$",
-      dl: "Download .msi",
-    },
-  ];
-
-  const current = platforms.find((p) => p.id === platform) ?? platforms[0];
-
   return (
     <div
       className="anim-fade-up"
@@ -139,36 +97,6 @@ function InstallGuide() {
         background: "#0d0d10",
       }}
     >
-      {/* Platform tabs */}
-      <div
-        style={{
-          display: "flex",
-          borderBottom: "1px solid #1c1c24",
-        }}
-      >
-        {platforms.map((p) => (
-          <div
-            key={p.id}
-            style={{
-              flex: 1,
-              padding: "10px 0",
-              textAlign: "center",
-              fontFamily: "var(--font-syne, sans-serif)",
-              fontSize: "0.8125rem",
-              fontWeight: 600,
-              color: p.id === platform ? "#a78bfa" : "#3e3e50",
-              borderBottom:
-                p.id === platform
-                  ? "2px solid #a78bfa"
-                  : "2px solid transparent",
-              marginBottom: -1,
-            }}
-          >
-            {p.label}
-          </div>
-        ))}
-      </div>
-
       <div style={{ padding: 20 }}>
         {/* Step 1: Install */}
         <div style={{ marginBottom: 16 }}>
@@ -186,13 +114,13 @@ function InstallGuide() {
             1 — Install
           </div>
           <div className="code-block">
-            <span className="prompt">{current.prompt} </span>
-            {current.cmd}
+            <span className="prompt">$ </span>
+            {INSTALL_CMD}
           </div>
         </div>
 
         {/* Step 2: Setup */}
-        <div style={{ marginBottom: 20 }}>
+        <div>
           <div
             style={{
               fontFamily: "var(--font-syne, sans-serif)",
@@ -207,7 +135,7 @@ function InstallGuide() {
             2 — Setup
           </div>
           <div className="code-block">
-            <span className="prompt">{current.prompt} </span>
+            <span className="prompt">$ </span>
             worktree setup
           </div>
           <p
@@ -231,11 +159,6 @@ function InstallGuide() {
             >worktree://</code> URL scheme and selects your editor.
           </p>
         </div>
-
-        {/* Download link */}
-        <a href="#" className="btn-ghost" style={{ width: "100%", justifyContent: "center" }}>
-          {current.dl}
-        </a>
       </div>
     </div>
   );
@@ -265,19 +188,9 @@ export default function OpenPage() {
     // Trigger the custom URL scheme once
     if (schemeTriggered.current) return;
     schemeTriggered.current = true;
-    // Use a hidden iframe so we don't navigate away from the page
-    try {
-      const iframe = document.createElement("iframe");
-      iframe.style.cssText = "position:absolute;width:0;height:0;border:none;opacity:0;";
-      iframe.src = buildWorktreeUrl(p);
-      document.body.appendChild(iframe);
-      setTimeout(() => {
-        if (document.body.contains(iframe)) document.body.removeChild(iframe);
-      }, 3000);
-    } catch {
-      // fallback: direct navigation (stays on page for custom schemes)
-      window.location.href = buildWorktreeUrl(p);
-    }
+    // window.location.href doesn't navigate away for custom URL schemes —
+    // the browser hands off to the registered handler and stays on the page.
+    window.location.href = buildWorktreeUrl(p);
   }, []);
 
   /* ── retry: re-trigger the scheme ── */
@@ -285,17 +198,7 @@ export default function OpenPage() {
     if (!params) return;
     schemeTriggered.current = false;
     setPhase("opening");
-    try {
-      const iframe = document.createElement("iframe");
-      iframe.style.cssText = "position:absolute;width:0;height:0;border:none;opacity:0;";
-      iframe.src = buildWorktreeUrl(params);
-      document.body.appendChild(iframe);
-      setTimeout(() => {
-        if (document.body.contains(iframe)) document.body.removeChild(iframe);
-      }, 3000);
-    } catch {
-      window.location.href = buildWorktreeUrl(params);
-    }
+    window.location.href = buildWorktreeUrl(params);
   }
 
   return (
