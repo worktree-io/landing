@@ -25,7 +25,9 @@
       "Bash(gh run list:*)",
       "Bash(python3:*)",
       "Bash(gh run view:*)",
-      "Bash(npx playwright test --update-snapshots)"
+      "Bash(npx playwright test --update-snapshots)",
+      "Bash(gh repo view:*)",
+      "Bash(command -v:*)"
     ],
     "deny": ["Bash(gh issue create:*)"]
   },
