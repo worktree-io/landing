@@ -7,7 +7,10 @@
       "Bash(pnpm dlx centy:*)",
       "Bash(centy:*)",
       "Bash(npm run build:*)",
-      "Bash(gh issue list:*)"
+      "Bash(gh issue list:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   },
   "hooks": {
