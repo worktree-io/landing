@@ -9,7 +9,8 @@
     "uuidgen",
     "Vercel",
     "viewports",
-    "Worktree"
+    "Worktree",
+    "worktrees"
   ],
   "ignorePaths": [
     "node_modules",

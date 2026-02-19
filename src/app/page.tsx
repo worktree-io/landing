@@ -71,6 +71,61 @@ function Nav() {
   );
 }
 
+/* Terminal result mockup shown below the GitHub comment */
+function WorkspaceResult() {
+  return (
+    <div
+      style={{
+        marginTop: 12,
+        borderRadius: 8,
+        overflow: "hidden",
+        border: "1px solid #1c1c24",
+        background: "#0d0d10",
+        fontFamily: "var(--font-jetbrains-mono, monospace)",
+        fontSize: "0.8125rem",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+      }}
+    >
+      {/* Terminal title bar */}
+      <div
+        style={{
+          background: "#141418",
+          borderBottom: "1px solid #1c1c24",
+          padding: "8px 14px",
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+        }}
+      >
+        {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
+          <div
+            key={color}
+            style={{ width: 10, height: 10, borderRadius: "50%", background: color, opacity: 0.8 }}
+          />
+        ))}
+        <span style={{ color: "#3e3e50", fontSize: "0.7rem", marginLeft: 6 }}>
+          terminal
+        </span>
+      </div>
+      <div style={{ padding: "14px 16px", lineHeight: 1.9 }}>
+        <div style={{ color: "#68687a" }}>
+          <span style={{ color: "#a78bfa" }}>$</span> worktree open
+        </div>
+        <div style={{ color: "#4ade80" }}>
+          {"  "}✓ Fetching issue #31
+        </div>
+        <div style={{ color: "#4ade80" }}>
+          {"  "}✓ Creating worktree{"   "}
+          <span style={{ color: "#68687a" }}>~/worktrees/centy-daemon/issue-31</span>
+        </div>
+        <div style={{ color: "#4ade80" }}>
+          {"  "}✓ Opening VS Code
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* GitHub comment mockup */
 function GitHubMockup() {
   return (
@@ -329,8 +384,9 @@ function Hero() {
               marginBottom: 36,
             }}
           >
-            Click any link in a GitHub issue comment. Your editor opens with a
-            local workspace, pointed at that issue. No cloning. No context
+            A GitHub Action posts an &ldquo;Open workspace&rdquo; link on every
+            new issue. Click it — Worktree creates an isolated git worktree on
+            your machine and opens it in your editor. No extra clone. No context
             switching.
           </p>
 
@@ -371,10 +427,9 @@ function Hero() {
 
         {/* Mockup */}
         <div className="anim-fade-up d-400">
-          <GitHubMockup />
           <div
             style={{
-              marginTop: 12,
+              marginBottom: 6,
               display: "flex",
               alignItems: "center",
               gap: 8,
@@ -400,6 +455,8 @@ function Hero() {
               GitHub Action posts this comment automatically on every new issue
             </span>
           </div>
+          <GitHubMockup />
+          <WorkspaceResult />
         </div>
       </div>
     </section>
@@ -451,7 +508,7 @@ function HowItWorks() {
     {
       n: "04",
       title: "Click the link",
-      body: "One click routes here. The page triggers the local daemon via a custom URL scheme.",
+      body: "One click opens this page, which wakes up Worktree running on your machine. No terminal. No manual steps.",
       detail: "worktree://open?...",
       icon: (
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -815,9 +872,12 @@ function InstallSection() {
               </span>
             </div>
             <div style={{ padding: 18 }}>
-              <div className="code-block" style={{ marginBottom: 12 }}>
+              <div className="code-block" style={{ marginBottom: 6 }}>
                 <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
+              <p style={{ fontFamily: "var(--font-syne, sans-serif)", fontSize: "0.7rem", color: "#3e3e50", marginBottom: 12 }}>
+                Requires Rust / Cargo — or download a binary directly above.
+              </p>
               <a
                 href={`${RUNNER_URL}/worktree-macos-aarch64.tar.gz`}
                 target="_blank"
@@ -878,14 +938,17 @@ function InstallSection() {
               </span>
             </div>
             <div style={{ padding: 18 }}>
-              <div className="code-block" style={{ marginBottom: 12 }}>
+              <div className="code-block" style={{ marginBottom: 6 }}>
                 <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
+              <p style={{ fontFamily: "var(--font-syne, sans-serif)", fontSize: "0.7rem", color: "#3e3e50", marginBottom: 12 }}>
+                Requires Rust / Cargo — or download a binary directly above.
+              </p>
               <a
                 href={`${RUNNER_URL}/worktree-linux-x86_64.tar.gz`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-ghost"
+                className="btn-accent"
                 style={{ width: "100%", justifyContent: "center" }}
               >
                 x86_64 .tar.gz
@@ -941,14 +1004,17 @@ function InstallSection() {
               </span>
             </div>
             <div style={{ padding: 18 }}>
-              <div className="code-block" style={{ marginBottom: 12 }}>
+              <div className="code-block" style={{ marginBottom: 6 }}>
                 <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
+              <p style={{ fontFamily: "var(--font-syne, sans-serif)", fontSize: "0.7rem", color: "#3e3e50", marginBottom: 12 }}>
+                Requires Rust / Cargo — or download a binary directly above.
+              </p>
               <a
                 href={`${RUNNER_URL}/worktree-windows-x86_64.zip`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-ghost"
+                className="btn-accent"
                 style={{ width: "100%", justifyContent: "center" }}
               >
                 Download .zip
@@ -1249,8 +1315,6 @@ function Footer() {
         <div className="footer-nav">
           {[
             { label: "GitHub", href: GITHUB_URL },
-            { label: "MIT License", href: "#" },
-            { label: "Docs", href: "#" },
           ].map((link) => (
             <a
               key={link.label}
