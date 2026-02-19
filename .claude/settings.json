@@ -15,7 +15,14 @@
       "mcp__playwright__browser_take_screenshot",
       "mcp__playwright__browser_console_messages",
       "Bash(node --version:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(python3 -m json.tool:*)",
+      "Bash(grep:*)",
+      "Bash(sort:*)",
+      "Bash(for:*)",
+      "Bash(do uuidgen)",
+      "Bash(done)",
+      "Bash(gh run list:*)"
     ],
     "deny": ["Bash(gh issue create:*)"]
   },
