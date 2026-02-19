@@ -736,7 +736,9 @@ function InstallSection() {
                 <span className="prompt">$ </span>cargo install worktree
               </div>
               <a
-                href="#"
+                href="https://github.com/worktree-io/runner/releases"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-accent"
                 style={{ width: "100%", justifyContent: "center" }}
               >
@@ -781,7 +783,9 @@ function InstallSection() {
                 <span className="prompt">$ </span>cargo install worktree
               </div>
               <a
-                href="#"
+                href="https://github.com/worktree-io/runner/releases"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-ghost"
                 style={{ width: "100%", justifyContent: "center" }}
               >
@@ -826,7 +830,9 @@ function InstallSection() {
                 <span className="prompt">$ </span>cargo install worktree
               </div>
               <a
-                href="#"
+                href="https://github.com/worktree-io/runner/releases"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-ghost"
                 style={{ width: "100%", justifyContent: "center" }}
               >
