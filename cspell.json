@@ -2,15 +2,20 @@
   "version": "0.2",
   "language": "en",
   "words": [
-    "Worktree",
-    "Geist"
+    "Geist",
+    "uuidgen",
+    "Worktree"
   ],
   "ignorePaths": [
     "node_modules",
     ".next",
     "out",
     "package-lock.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
     ".centy/.centy-manifest.json"
   ],
-  "import": [".centy/cspell.json"]
+  "import": [
+    ".centy/cspell.json"
+  ]
 }
