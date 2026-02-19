@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { GITHUB_URL } from "@/lib/github-url";
+import { INSTALL_CMD } from "@/lib/install-cmd";
 
 type Phase =
   | "loading"    // reading URL params
@@ -105,21 +107,21 @@ function InstallGuide() {
     {
       id: "mac",
       label: "macOS",
-      cmd: "cargo install worktree",
+      cmd: INSTALL_CMD,
       prompt: "$",
       dl: "Download .dmg",
     },
     {
       id: "linux",
       label: "Linux",
-      cmd: "cargo install worktree",
+      cmd: INSTALL_CMD,
       prompt: "$",
       dl: "Download .tar.gz",
     },
     {
       id: "windows",
       label: "Windows",
-      cmd: "cargo install worktree",
+      cmd: INSTALL_CMD,
       prompt: "$",
       dl: "Download .msi",
     },
@@ -332,7 +334,7 @@ export default function OpenPage() {
           Worktree
         </Link>
         <a
-          href="https://github.com/worktree-io"
+          href={GITHUB_URL}
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -743,7 +745,7 @@ export default function OpenPage() {
         </span>
         <span style={{ color: "#1c1c24" }}>·</span>
         <a
-          href="https://github.com/worktree-io"
+          href={GITHUB_URL}
           target="_blank"
           rel="noopener noreferrer"
           style={{

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { GITHUB_URL } from "@/lib/github-url";
+import { INSTALL_CMD } from "@/lib/install-cmd";
 
 /* Nav */
 function Nav() {
@@ -36,7 +38,7 @@ function Nav() {
           Worktree
         </span>
         <a
-          href="https://github.com/worktree-io"
+          href={GITHUB_URL}
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -349,7 +351,7 @@ function Hero() {
               Download
             </a>
             <a
-              href="https://github.com/worktree-io"
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost"
@@ -733,7 +735,7 @@ function InstallSection() {
             </div>
             <div style={{ padding: 18 }}>
               <div className="code-block" style={{ marginBottom: 12 }}>
-                <span className="prompt">$ </span>cargo install worktree
+                <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
               <a
                 href="#"
@@ -778,7 +780,7 @@ function InstallSection() {
             </div>
             <div style={{ padding: 18 }}>
               <div className="code-block" style={{ marginBottom: 12 }}>
-                <span className="prompt">$ </span>cargo install worktree
+                <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
               <a
                 href="#"
@@ -823,7 +825,7 @@ function InstallSection() {
             </div>
             <div style={{ padding: 18 }}>
               <div className="code-block" style={{ marginBottom: 12 }}>
-                <span className="prompt">$ </span>cargo install worktree
+                <span className="prompt">$ </span>{INSTALL_CMD}
               </div>
               <a
                 href="#"
@@ -936,7 +938,7 @@ function Footer() {
         </span>
         <div style={{ display: "flex", gap: 24 }}>
           {[
-            { label: "GitHub", href: "https://github.com/worktree-io" },
+            { label: "GitHub", href: GITHUB_URL },
             { label: "MIT License", href: "#" },
             { label: "Docs", href: "#" },
           ].map((link) => (
