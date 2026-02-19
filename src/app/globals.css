@@ -135,58 +135,6 @@ body {
   .d-800 { animation-delay: 800ms; }
   .d-1000 { animation-delay: 1000ms; }
 
-  /* accent button */
-  .btn-accent {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #a78bfa;
-    color: #ffffff;
-    font-family: var(--font-syne, sans-serif);
-    font-weight: 700;
-    font-size: 0.875rem;
-    letter-spacing: 0.01em;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.15s, transform 0.12s;
-  }
-
-  .btn-accent:hover {
-    background: #bba3fc;
-    transform: translateY(-1px);
-  }
-
-  .btn-accent:active {
-    transform: translateY(0);
-  }
-
-  /* ghost button */
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    color: #ebebef;
-    font-family: var(--font-syne, sans-serif);
-    font-weight: 600;
-    font-size: 0.875rem;
-    padding: 10px 20px;
-    border: 1px solid #2c2c3a;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: border-color 0.15s, color 0.15s, transform 0.12s;
-  }
-
-  .btn-ghost:hover {
-    border-color: #4a4a5a;
-    color: #fff;
-    transform: translateY(-1px);
-  }
-
   /* code block */
   .code-block {
     background: #0d0d10;
@@ -270,6 +218,58 @@ body {
   .step-connector {
     display: none;
   }
+}
+
+/* accent button */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #a78bfa;
+  color: #ffffff;
+  font-family: var(--font-syne, sans-serif);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.12s;
+}
+
+.btn-accent:hover {
+  background: #bba3fc;
+  transform: translateY(-1px);
+}
+
+.btn-accent:active {
+  transform: translateY(0);
+}
+
+/* ghost button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #ebebef;
+  font-family: var(--font-syne, sans-serif);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 10px 20px;
+  border: 1px solid #2c2c3a;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, transform 0.12s;
+}
+
+.btn-ghost:hover {
+  border-color: #4a4a5a;
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 720px) {
