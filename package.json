@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "eslint src",
     "export": "next build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots"
   },
   "dependencies": {
     "next": "^16.1.6",
@@ -17,6 +19,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -24,8 +27,10 @@
     "cspell": "^9.6.4",
     "eslint": "^9",
     "eslint-config-agent": "^2.0.1",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "serve": "^14.2.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

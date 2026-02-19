@@ -4,6 +4,7 @@
   "words": [
     "Geist",
     "uuidgen",
+    "Vercel",
     "Worktree"
   ],
   "ignorePaths": [
@@ -13,7 +14,10 @@
     "package-lock.json",
     "pnpm-lock.yaml",
     "pnpm-workspace.yaml",
-    ".centy/.centy-manifest.json"
+    ".centy/.centy-manifest.json",
+    "tests/**/*.png",
+    "playwright-report",
+    "test-results"
   ],
   "import": [
     ".centy/cspell.json"
