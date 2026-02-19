@@ -5,7 +5,8 @@
       "Bash(uuidgen:*)",
       "Bash(npx centy:*)",
       "Bash(pnpm dlx centy:*)",
-      "Bash(centy:*)"
+      "Bash(centy:*)",
+      "Bash(npm run build:*)"
     ]
   },
   "hooks": {
