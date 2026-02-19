@@ -1,1 +1,218 @@
 @import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-syne);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --color-bg: #070708;
+  --color-surface: #0d0d10;
+  --color-surface2: #141418;
+  --color-border: #1c1c24;
+  --color-border-strong: #2c2c3a;
+  --color-fore: #ebebef;
+  --color-muted: #68687a;
+  --color-dim: #2e2e3c;
+  --color-accent: #c8ff3e;
+  --color-accent-muted: rgba(200, 255, 62, 0.12);
+  --color-green: #3effa0;
+  --color-red: #ff5a5a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #070708;
+  color: #ebebef;
+  font-family: var(--font-syne, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* keyframes */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(200, 255, 62, 0);
+  }
+  50% {
+    box-shadow: 0 0 24px 4px rgba(200, 255, 62, 0.18);
+  }
+}
+
+@layer utilities {
+  /* dot grid background */
+  .dot-bg {
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.055) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+
+  /* monospace util */
+  .mono {
+    font-family: var(--font-jetbrains-mono, monospace);
+  }
+
+  /* animation classes */
+  .anim-fade-up {
+    animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .anim-fade-in {
+    animation: fade-in 0.4s ease both;
+  }
+
+  .anim-spin {
+    animation: spin-ring 1.1s linear infinite;
+  }
+
+  .anim-pulse-dot {
+    animation: pulse-dot 1.6s ease-in-out infinite;
+  }
+
+  .anim-glow {
+    animation: glow-pulse 2.4s ease-in-out infinite;
+  }
+
+  /* delay helpers */
+  .d-100 { animation-delay: 100ms; }
+  .d-200 { animation-delay: 200ms; }
+  .d-300 { animation-delay: 300ms; }
+  .d-400 { animation-delay: 400ms; }
+  .d-500 { animation-delay: 500ms; }
+  .d-600 { animation-delay: 600ms; }
+  .d-800 { animation-delay: 800ms; }
+  .d-1000 { animation-delay: 1000ms; }
+
+  /* accent button */
+  .btn-accent {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #c8ff3e;
+    color: #070708;
+    font-family: var(--font-syne, sans-serif);
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.12s;
+  }
+
+  .btn-accent:hover {
+    background: #d6ff5c;
+    transform: translateY(-1px);
+  }
+
+  .btn-accent:active {
+    transform: translateY(0);
+  }
+
+  /* ghost button */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #ebebef;
+    font-family: var(--font-syne, sans-serif);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 10px 20px;
+    border: 1px solid #2c2c3a;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s, transform 0.12s;
+  }
+
+  .btn-ghost:hover {
+    border-color: #4a4a5a;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  /* code block */
+  .code-block {
+    background: #0d0d10;
+    border: 1px solid #1c1c24;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: var(--font-jetbrains-mono, monospace);
+    font-size: 0.8125rem;
+    color: #ebebef;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .code-block .prompt {
+    color: #c8ff3e;
+    user-select: none;
+  }
+
+  /* step number */
+  .step-num {
+    font-family: var(--font-syne, sans-serif);
+    font-weight: 800;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #1c1c24;
+    user-select: none;
+  }
+}

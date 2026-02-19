@@ -3,8 +3,10 @@
   "language": "en",
   "words": [
     "Geist",
+    "nvim",
     "uuidgen",
     "Vercel",
+    "winget",
     "Worktree"
   ],
   "ignorePaths": [

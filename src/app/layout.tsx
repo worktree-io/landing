@@ -1,20 +1,31 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Syne, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Worktree",
-  description: "Worktree landing page",
+  title: "Worktree — Open issues as workspaces",
+  description:
+    "Click any issue link and your editor opens with a local workspace. No config, no friction.",
+  openGraph: {
+    title: "Worktree — Open issues as workspaces",
+    description:
+      "Click any issue link and your editor opens with a local workspace. No config, no friction.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -24,9 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${syne.variable} ${jetbrainsMono.variable}`}>
         {children}
       </body>
     </html>

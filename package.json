@@ -35,7 +35,7 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "**/*.{ts,tsx,js,jsx,mjs,cjs}": "eslint --no-warn-ignored",
+    "**/*.{ts,tsx,js,jsx,mjs,cjs}": "env NODE_OPTIONS=--max-old-space-size=4096 eslint --no-warn-ignored",
     "**/*": "cspell --no-must-find-files"
   }
 }
