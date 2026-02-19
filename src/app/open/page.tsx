@@ -105,7 +105,7 @@ function InstallGuide() {
     {
       id: "mac",
       label: "macOS",
-      cmd: "brew install worktree-io/tap/worktree",
+      cmd: "cargo install worktree",
       prompt: "$",
       dl: "Download .dmg",
     },
@@ -119,8 +119,8 @@ function InstallGuide() {
     {
       id: "windows",
       label: "Windows",
-      cmd: "winget install worktree",
-      prompt: ">",
+      cmd: "cargo install worktree",
+      prompt: "$",
       dl: "Download .msi",
     },
   ];

@@ -6,7 +6,6 @@
     "nvim",
     "uuidgen",
     "Vercel",
-    "winget",
     "Worktree"
   ],
   "ignorePaths": [

@@ -732,14 +732,7 @@ function InstallSection() {
               </span>
             </div>
             <div style={{ padding: 18 }}>
-              <div className="code-block" style={{ marginBottom: 8 }}>
-                <span className="prompt">$ </span>brew install
-                worktree-io/tap/worktree
-              </div>
-              <div
-                className="code-block"
-                style={{ marginBottom: 12, opacity: 0.5 }}
-              >
+              <div className="code-block" style={{ marginBottom: 12 }}>
                 <span className="prompt">$ </span>cargo install worktree
               </div>
               <a
@@ -829,14 +822,8 @@ function InstallSection() {
               </span>
             </div>
             <div style={{ padding: 18 }}>
-              <div className="code-block" style={{ marginBottom: 8 }}>
-                <span className="prompt">&gt; </span>winget install worktree
-              </div>
-              <div
-                className="code-block"
-                style={{ marginBottom: 12, opacity: 0.5 }}
-              >
-                <span className="prompt">&gt; </span>cargo install worktree
+              <div className="code-block" style={{ marginBottom: 12 }}>
+                <span className="prompt">$ </span>cargo install worktree
               </div>
               <a
                 href="#"
@@ -847,49 +834,6 @@ function InstallSection() {
               </a>
             </div>
           </div>
-        </div>
-
-        {/* Cargo universal note */}
-        <div
-          style={{
-            marginTop: 16,
-            padding: "14px 18px",
-            border: "1px solid #1c1c24",
-            borderRadius: 8,
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-          }}
-        >
-          <svg
-            width="15"
-            height="15"
-            viewBox="0 0 24 24"
-            fill="none"
-            style={{ flexShrink: 0 }}
-          >
-            <path
-              d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"
-              fill="#3e3e50"
-            />
-          </svg>
-          <span style={{ fontSize: "0.8125rem", color: "#68687a", lineHeight: 1.6 }}>
-            Prefer Cargo?{" "}
-            <code
-              style={{
-                fontFamily: "var(--font-jetbrains-mono, monospace)",
-                fontSize: "0.75rem",
-                color: "#ebebef",
-                background: "#141418",
-                border: "1px solid #1c1c24",
-                borderRadius: 3,
-                padding: "0 6px",
-              }}
-            >
-              cargo install worktree
-            </code>{" "}
-            works on macOS, Linux, and Windows.
-          </span>
         </div>
 
         {/* After install note */}
