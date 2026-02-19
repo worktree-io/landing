@@ -414,6 +414,7 @@ function HowItWorks() {
       title: "Install Worktree",
       body: "Install the daemon with cargo, then run the setup wizard to register the URL handler and pick your editor.",
       detail: "cargo install worktree",
+      detail2: "worktree setup",
       icon: (
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M2 4l6-2 6 2v6l-6 3-6-3V4z" />
@@ -476,7 +477,7 @@ function HowItWorks() {
 
   const delayClasses = ["d-100", "d-200", "d-300", "d-400", "d-500"];
 
-  function StepCard({ step, delayClass }: { step: typeof setupSteps[0]; delayClass: string }) {
+  function StepCard({ step, delayClass }: { step: Omit<typeof setupSteps[0], "detail2"> & { detail2?: string }; delayClass: string }) {
     return (
       <div
         className={`anim-fade-up ${delayClass}`}
@@ -536,19 +537,37 @@ function HowItWorks() {
         >
           {step.body}
         </p>
-        <div
-          style={{
-            fontFamily: "var(--font-jetbrains-mono, monospace)",
-            fontSize: "0.75rem",
-            color: "#68687a",
-            background: "#141418",
-            border: "1px solid #1c1c24",
-            borderRadius: 4,
-            padding: "4px 10px",
-            display: "inline-block",
-          }}
-        >
-          {step.detail}
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-start" }}>
+          <div
+            style={{
+              fontFamily: "var(--font-jetbrains-mono, monospace)",
+              fontSize: "0.75rem",
+              color: "#68687a",
+              background: "#141418",
+              border: "1px solid #1c1c24",
+              borderRadius: 4,
+              padding: "4px 10px",
+              display: "inline-block",
+            }}
+          >
+            {step.detail}
+          </div>
+          {step.detail2 && (
+            <div
+              style={{
+                fontFamily: "var(--font-jetbrains-mono, monospace)",
+                fontSize: "0.75rem",
+                color: "#68687a",
+                background: "#141418",
+                border: "1px solid #1c1c24",
+                borderRadius: 4,
+                padding: "4px 10px",
+                display: "inline-block",
+              }}
+            >
+              {step.detail2}
+            </div>
+          )}
         </div>
       </div>
     );
