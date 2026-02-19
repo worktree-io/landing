@@ -69,9 +69,9 @@ function IssueCard({ params }: { params: IssueParams }) {
             marginLeft: "auto",
             fontFamily: "var(--font-jetbrains-mono, monospace)",
             fontSize: "0.75rem",
-            color: "#c8ff3e",
-            background: "rgba(200,255,62,0.1)",
-            border: "1px solid rgba(200,255,62,0.2)",
+            color: "#a78bfa",
+            background: "rgba(167,139,250,0.1)",
+            border: "1px solid rgba(167,139,250,0.2)",
             borderRadius: 4,
             padding: "2px 8px",
           }}
@@ -156,10 +156,10 @@ function InstallGuide() {
               fontFamily: "var(--font-syne, sans-serif)",
               fontSize: "0.8125rem",
               fontWeight: 600,
-              color: p.id === platform ? "#c8ff3e" : "#3e3e50",
+              color: p.id === platform ? "#a78bfa" : "#3e3e50",
               borderBottom:
                 p.id === platform
-                  ? "2px solid #c8ff3e"
+                  ? "2px solid #a78bfa"
                   : "2px solid transparent",
               marginBottom: -1,
             }}
@@ -177,7 +177,7 @@ function InstallGuide() {
               fontFamily: "var(--font-syne, sans-serif)",
               fontSize: "0.75rem",
               fontWeight: 700,
-              color: "#c8ff3e",
+              color: "#a78bfa",
               letterSpacing: "0.06em",
               textTransform: "uppercase",
               marginBottom: 8,
@@ -198,7 +198,7 @@ function InstallGuide() {
               fontFamily: "var(--font-syne, sans-serif)",
               fontSize: "0.75rem",
               fontWeight: 700,
-              color: "#c8ff3e",
+              color: "#a78bfa",
               letterSpacing: "0.06em",
               textTransform: "uppercase",
               marginBottom: 8,
@@ -438,7 +438,7 @@ export default function OpenPage() {
                   width: 40,
                   height: 40,
                   border: "2px solid #1c1c24",
-                  borderTopColor: "#c8ff3e",
+                  borderTopColor: "#a78bfa",
                   borderRadius: "50%",
                   margin: "0 auto",
                 }}
@@ -467,7 +467,7 @@ export default function OpenPage() {
                         width: 32,
                         height: 32,
                         border: "2px solid #1c1c24",
-                        borderTopColor: "#c8ff3e",
+                        borderTopColor: "#a78bfa",
                         borderRadius: "50%",
                         flexShrink: 0,
                       }}

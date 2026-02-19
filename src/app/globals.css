@@ -12,8 +12,8 @@
   --color-fore: #ebebef;
   --color-muted: #68687a;
   --color-dim: #2e2e3c;
-  --color-accent: #c8ff3e;
-  --color-accent-muted: rgba(200, 255, 62, 0.12);
+  --color-accent: #a78bfa;
+  --color-accent-muted: rgba(167, 139, 250, 0.12);
   --color-green: #3effa0;
   --color-red: #ff5a5a;
 }
@@ -81,10 +81,10 @@ body {
 @keyframes glow-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(200, 255, 62, 0);
+    box-shadow: 0 0 0 0 rgba(167, 139, 250, 0);
   }
   50% {
-    box-shadow: 0 0 24px 4px rgba(200, 255, 62, 0.18);
+    box-shadow: 0 0 24px 4px rgba(167, 139, 250, 0.18);
   }
 }
 
@@ -140,8 +140,8 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #c8ff3e;
-    color: #070708;
+    background: #a78bfa;
+    color: #ffffff;
     font-family: var(--font-syne, sans-serif);
     font-weight: 700;
     font-size: 0.875rem;
@@ -155,7 +155,7 @@ body {
   }
 
   .btn-accent:hover {
-    background: #d6ff5c;
+    background: #bba3fc;
     transform: translateY(-1px);
   }
 
@@ -201,7 +201,7 @@ body {
   }
 
   .code-block .prompt {
-    color: #c8ff3e;
+    color: #a78bfa;
     user-select: none;
   }
 

@@ -153,14 +153,14 @@ function GitHubMockup() {
               width: 28,
               height: 28,
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #c8ff3e 0%, #4ade80 100%)",
+              background: "linear-gradient(135deg, #a78bfa 0%, #818cf8 100%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               flexShrink: 0,
               fontSize: 11,
               fontWeight: 800,
-              color: "#000",
+              color: "#fff",
             }}
           >
             W
@@ -176,12 +176,12 @@ function GitHubMockup() {
           <div
             style={{
               marginLeft: "auto",
-              background: "rgba(200,255,62,0.08)",
-              border: "1px solid rgba(200,255,62,0.2)",
+              background: "rgba(167,139,250,0.08)",
+              border: "1px solid rgba(167,139,250,0.2)",
               borderRadius: 4,
               padding: "1px 7px",
               fontSize: 11,
-              color: "#c8ff3e",
+              color: "#a78bfa",
               fontWeight: 600,
             }}
           >
@@ -251,7 +251,7 @@ function Hero() {
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(200,255,62,0.05) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(167,139,250,0.08) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
@@ -273,8 +273,8 @@ function Hero() {
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              background: "rgba(200,255,62,0.08)",
-              border: "1px solid rgba(200,255,62,0.2)",
+              background: "rgba(167,139,250,0.08)",
+              border: "1px solid rgba(167,139,250,0.2)",
               borderRadius: 20,
               padding: "4px 12px",
               marginBottom: 28,
@@ -285,7 +285,7 @@ function Hero() {
                 width: 6,
                 height: 6,
                 borderRadius: "50%",
-                background: "#c8ff3e",
+                background: "#a78bfa",
                 display: "inline-block",
                 animation: "pulse-dot 1.6s ease-in-out infinite",
               }}
@@ -296,7 +296,7 @@ function Hero() {
                 fontSize: "0.75rem",
                 fontWeight: 700,
                 letterSpacing: "0.06em",
-                color: "#c8ff3e",
+                color: "#a78bfa",
                 textTransform: "uppercase",
               }}
             >
@@ -316,7 +316,7 @@ function Hero() {
               marginBottom: 20,
             }}
           >
-            Open issues as <span style={{ color: "#c8ff3e" }}>workspaces.</span>
+            Open issues as <span style={{ color: "#a78bfa" }}>workspaces.</span>
           </h1>
 
           <p
@@ -440,7 +440,7 @@ function HowItWorks() {
               fontWeight: 700,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "#c8ff3e",
+              color: "#a78bfa",
               marginBottom: 12,
             }}
           >
@@ -494,7 +494,7 @@ function HowItWorks() {
                   style={{
                     fontFamily: "var(--font-jetbrains-mono, monospace)",
                     fontSize: "0.7rem",
-                    color: "#c8ff3e",
+                    color: "#a78bfa",
                     fontWeight: 500,
                     marginBottom: 14,
                     letterSpacing: "0.04em",
@@ -583,7 +583,7 @@ function EditorSection() {
               fontWeight: 700,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "#c8ff3e",
+              color: "#a78bfa",
               marginBottom: 12,
             }}
           >
@@ -624,9 +624,9 @@ function EditorSection() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 padding: "12px 16px",
-                border: `1px solid ${i === 0 ? "rgba(200,255,62,0.2)" : "#1c1c24"}`,
+                border: `1px solid ${i === 0 ? "rgba(167,139,250,0.2)" : "#1c1c24"}`,
                 borderRadius: 6,
-                background: i === 0 ? "rgba(200,255,62,0.04)" : "transparent",
+                background: i === 0 ? "rgba(167,139,250,0.04)" : "transparent",
               }}
             >
               <span
@@ -643,7 +643,7 @@ function EditorSection() {
                 style={{
                   fontFamily: "var(--font-jetbrains-mono, monospace)",
                   fontSize: "0.8125rem",
-                  color: i === 0 ? "#c8ff3e" : "#3e3e50",
+                  color: i === 0 ? "#a78bfa" : "#3e3e50",
                   background: "#141418",
                   border: "1px solid #1c1c24",
                   borderRadius: 4,
@@ -675,7 +675,7 @@ function InstallSection() {
             fontWeight: 700,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
-            color: "#c8ff3e",
+            color: "#a78bfa",
             marginBottom: 12,
           }}
         >
@@ -704,22 +704,22 @@ function InstallSection() {
           {/* macOS */}
           <div
             style={{
-              border: "1px solid rgba(200,255,62,0.25)",
+              border: "1px solid rgba(167,139,250,0.25)",
               borderRadius: 10,
               overflow: "hidden",
-              background: "rgba(200,255,62,0.03)",
+              background: "rgba(167,139,250,0.03)",
             }}
           >
             <div
               style={{
                 padding: "14px 18px",
-                borderBottom: "1px solid rgba(200,255,62,0.12)",
+                borderBottom: "1px solid rgba(167,139,250,0.12)",
                 display: "flex",
                 alignItems: "center",
                 gap: 8,
               }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#c8ff3e">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#a78bfa">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
               </svg>
               <span
@@ -727,7 +727,7 @@ function InstallSection() {
                   fontFamily: "var(--font-syne, sans-serif)",
                   fontWeight: 700,
                   fontSize: "0.875rem",
-                  color: "#c8ff3e",
+                  color: "#a78bfa",
                 }}
               >
                 macOS
@@ -861,9 +861,9 @@ function InstallSection() {
             style={{
               fontFamily: "var(--font-jetbrains-mono, monospace)",
               fontSize: "0.75rem",
-              color: "#c8ff3e",
-              background: "rgba(200,255,62,0.1)",
-              border: "1px solid rgba(200,255,62,0.2)",
+              color: "#a78bfa",
+              background: "rgba(167,139,250,0.1)",
+              border: "1px solid rgba(167,139,250,0.2)",
               borderRadius: 4,
               padding: "2px 8px",
               flexShrink: 0,
