@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { GITHUB_URL } from "@/lib/github-url";
 import { INSTALL_CMD } from "@/lib/install-cmd";
@@ -168,7 +168,7 @@ function InstallGuide() {
 export default function OpenPage() {
   const [phase, setPhase] = useState<Phase>("loading");
   const [params, setParams] = useState<IssueParams | null>(null);
-  const schemeTriggered = useRef(false);
+  const [launched, setLaunched] = useState(false);
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
@@ -181,23 +181,20 @@ export default function OpenPage() {
       return;
     }
 
-    const p = { owner, repo, issue };
-    setParams(p);
+    setParams({ owner, repo, issue });
     setPhase("opening");
-
-    // Trigger the custom URL scheme once
-    if (schemeTriggered.current) return;
-    schemeTriggered.current = true;
-    // window.location.href doesn't navigate away for custom URL schemes —
-    // the browser hands off to the registered handler and stays on the page.
-    window.location.href = buildWorktreeUrl(p);
   }, []);
 
-  /* ── retry: re-trigger the scheme ── */
+  /* ── launch: user-gesture trigger (Chrome requires this) ── */
+  function handleLaunch() {
+    if (!params) return;
+    setLaunched(true);
+    window.location.href = buildWorktreeUrl(params);
+  }
+
+  /* ── retry: re-trigger after first launch ── */
   function handleRetry() {
     if (!params) return;
-    schemeTriggered.current = false;
-    setPhase("opening");
     window.location.href = buildWorktreeUrl(params);
   }
 
@@ -363,43 +360,7 @@ export default function OpenPage() {
                   marginBottom: 28,
                 }}
               >
-                {phase === "opening" ? (
-                  <>
-                    <div
-                      style={{
-                        width: 32,
-                        height: 32,
-                        border: "2px solid #1c1c24",
-                        borderTopColor: "#a78bfa",
-                        borderRadius: "50%",
-                        flexShrink: 0,
-                      }}
-                      className="anim-spin"
-                    />
-                    <div>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-syne, sans-serif)",
-                          fontWeight: 700,
-                          fontSize: "1.1rem",
-                          letterSpacing: "-0.02em",
-                          color: "#ebebef",
-                        }}
-                      >
-                        Opening workspace
-                      </div>
-                      <div
-                        style={{
-                          fontSize: "0.8125rem",
-                          color: "#68687a",
-                          marginTop: 2,
-                        }}
-                      >
-                        Launching Worktree daemon…
-                      </div>
-                    </div>
-                  </>
-                ) : (
+                {phase === "success" ? (
                   <>
                     <div
                       style={{
@@ -447,14 +408,95 @@ export default function OpenPage() {
                       </div>
                     </div>
                   </>
+                ) : launched ? (
+                  <>
+                    <div
+                      style={{
+                        width: 32,
+                        height: 32,
+                        border: "2px solid #1c1c24",
+                        borderTopColor: "#a78bfa",
+                        borderRadius: "50%",
+                        flexShrink: 0,
+                      }}
+                      className="anim-spin"
+                    />
+                    <div>
+                      <div
+                        style={{
+                          fontFamily: "var(--font-syne, sans-serif)",
+                          fontWeight: 700,
+                          fontSize: "1.1rem",
+                          letterSpacing: "-0.02em",
+                          color: "#ebebef",
+                        }}
+                      >
+                        Opening workspace
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "0.8125rem",
+                          color: "#68687a",
+                          marginTop: 2,
+                        }}
+                      >
+                        Waiting for your editor…
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-syne, sans-serif)",
+                        fontWeight: 700,
+                        fontSize: "1.1rem",
+                        letterSpacing: "-0.02em",
+                        color: "#ebebef",
+                        marginBottom: 4,
+                      }}
+                    >
+                      Open workspace
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "0.8125rem",
+                        color: "#68687a",
+                      }}
+                    >
+                      Click the button below to open your editor
+                    </div>
+                  </div>
                 )}
               </div>
 
               {/* Issue card */}
               <IssueCard params={params} />
 
-              {/* Confirmation / feedback */}
-              {phase === "opening" && (
+              {/* Primary CTA — shown before first launch */}
+              {phase === "opening" && !launched && (
+                <div className="anim-fade-up">
+                  <button
+                    onClick={handleLaunch}
+                    className="btn-accent"
+                    style={{ width: "100%", justifyContent: "center" }}
+                  >
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                      <path
+                        d="M2 2h9v9M2 11l9-9"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    Open in editor
+                  </button>
+                </div>
+              )}
+
+              {/* Confirmation / feedback — shown after launch */}
+              {phase === "opening" && launched && (
                 <div className="anim-fade-up d-300">
                   <div
                     style={{
