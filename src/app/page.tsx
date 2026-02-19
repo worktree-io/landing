@@ -408,26 +408,167 @@ function Hero() {
 
 /* How it works */
 function HowItWorks() {
-  const steps = [
+  const setupSteps = [
     {
       n: "01",
-      title: "Issue opens",
-      body: `A GitHub Action runs and posts an "Open workspace" link as a comment on every new issue.`,
-      detail: "One-time setup per repo",
+      title: "Install Worktree",
+      body: "Install the daemon with cargo, then run the setup wizard to register the URL handler and pick your editor.",
+      detail: "cargo install worktree",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M2 4l6-2 6 2v6l-6 3-6-3V4z" />
+          <path d="M8 2v9M2 4l6 3 6-3" />
+        </svg>
+      ),
     },
     {
       n: "02",
-      title: "Click the link",
-      body: "The link routes here. If Worktree is installed, the page triggers the daemon via a custom URL scheme.",
-      detail: "worktree://open?...",
-    },
-    {
-      n: "03",
-      title: "Workspace opens",
-      body: "The daemon creates a local worktree directory and opens it in your configured editor. Instantly.",
-      detail: "code . · idea . · custom commands",
+      title: "Add GitHub Action",
+      body: "Add a four-line workflow to your repo. Every new issue gets an \"Open workspace\" comment from that point on.",
+      detail: ".github/workflows/worktree.yml",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="1" width="10" height="13" rx="1.5" />
+          <path d="M5 5h4M5 8h4M5 11h2" />
+          <path d="M13 5l1.5 1.5L13 8" />
+        </svg>
+      ),
     },
   ];
+
+  const flowSteps = [
+    {
+      n: "03",
+      title: "Issue opens",
+      body: `The action triggers and posts an "Open workspace" link as a comment. Nothing for you to do.`,
+      detail: "worktree-io/action@v1",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M2 3h12a1 1 0 011 1v7a1 1 0 01-1 1H5l-3 2V4a1 1 0 011-1z" />
+        </svg>
+      ),
+    },
+    {
+      n: "04",
+      title: "Click the link",
+      body: "One click routes here. The page triggers the local daemon via a custom URL scheme.",
+      detail: "worktree://open?...",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M7 3H3a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1V9" />
+          <path d="M10 2h4v4M14 2L7 9" />
+        </svg>
+      ),
+    },
+    {
+      n: "05",
+      title: "Workspace opens",
+      body: "The daemon creates a local worktree directory and opens it in your configured editor. Instantly.",
+      detail: "code . · idea . · nvim .",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="1" y="2" width="14" height="12" rx="2" />
+          <path d="M4 6l3 3-3 3M9 12h3" />
+        </svg>
+      ),
+    },
+  ];
+
+  const delayClasses = ["d-100", "d-200", "d-300", "d-400", "d-500"];
+
+  function StepCard({ step, delayClass }: { step: typeof setupSteps[0]; delayClass: string }) {
+    return (
+      <div
+        className={`anim-fade-up ${delayClass}`}
+        style={{
+          background: "#0d0d10",
+          border: "1px solid #1c1c24",
+          borderRadius: 10,
+          padding: "28px 24px",
+        }}
+      >
+        <div
+          style={{
+            width: 32,
+            height: 32,
+            background: "rgba(167,139,250,0.08)",
+            border: "1px solid rgba(167,139,250,0.15)",
+            borderRadius: 6,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 16,
+          }}
+        >
+          {step.icon}
+        </div>
+        <div
+          style={{
+            fontFamily: "var(--font-jetbrains-mono, monospace)",
+            fontSize: "0.7rem",
+            color: "#a78bfa",
+            fontWeight: 500,
+            marginBottom: 8,
+            letterSpacing: "0.04em",
+          }}
+        >
+          /{step.n}
+        </div>
+        <h3
+          style={{
+            fontFamily: "var(--font-syne, sans-serif)",
+            fontWeight: 700,
+            fontSize: "1.05rem",
+            letterSpacing: "-0.02em",
+            color: "#ebebef",
+            marginBottom: 8,
+          }}
+        >
+          {step.title}
+        </h3>
+        <p
+          style={{
+            fontSize: "0.875rem",
+            color: "#68687a",
+            lineHeight: 1.7,
+            marginBottom: 16,
+          }}
+        >
+          {step.body}
+        </p>
+        <div
+          style={{
+            fontFamily: "var(--font-jetbrains-mono, monospace)",
+            fontSize: "0.75rem",
+            color: "#68687a",
+            background: "#141418",
+            border: "1px solid #1c1c24",
+            borderRadius: 4,
+            padding: "4px 10px",
+            display: "inline-block",
+          }}
+        >
+          {step.detail}
+        </div>
+      </div>
+    );
+  }
+
+  const ArrowIcon = () => (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 8h10M9 4l4 4-4 4" />
+    </svg>
+  );
+
+  const groupLabelStyle: React.CSSProperties = {
+    fontFamily: "var(--font-syne, sans-serif)",
+    fontSize: "0.7rem",
+    fontWeight: 700,
+    letterSpacing: "0.08em",
+    textTransform: "uppercase",
+    color: "#68687a",
+    marginBottom: 14,
+  };
 
   return (
     <section style={{ padding: "80px 24px", borderTop: "1px solid #1c1c24" }}>
@@ -455,86 +596,36 @@ function HowItWorks() {
               color: "#ebebef",
             }}
           >
-            Three steps. Zero friction.
+            Set up once. Works for every issue.
           </h2>
         </div>
 
-        <div className="steps-grid">
-          {steps.map((step, i) => (
-            <div
-              key={step.n}
-              style={{
-                background: i === 1 ? "#0d0d10" : "transparent",
-                border: "1px solid #1c1c24",
-                borderRadius: 10,
-                padding: "32px 28px",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              <div
-                className="step-num"
-                style={{
-                  position: "absolute",
-                  top: -8,
-                  right: 16,
-                  pointerEvents: "none",
-                }}
-              >
-                {step.n}
-              </div>
-              <div style={{ position: "relative" }}>
-                <div
-                  style={{
-                    fontFamily: "var(--font-jetbrains-mono, monospace)",
-                    fontSize: "0.7rem",
-                    color: "#a78bfa",
-                    fontWeight: 500,
-                    marginBottom: 14,
-                    letterSpacing: "0.04em",
-                  }}
-                >
-                  /{step.n}
-                </div>
-                <h3
-                  style={{
-                    fontFamily: "var(--font-syne, sans-serif)",
-                    fontWeight: 700,
-                    fontSize: "1.1rem",
-                    letterSpacing: "-0.02em",
-                    color: "#ebebef",
-                    marginBottom: 10,
-                  }}
-                >
-                  {step.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "0.875rem",
-                    color: "#68687a",
-                    lineHeight: 1.7,
-                    marginBottom: 16,
-                  }}
-                >
-                  {step.body}
-                </p>
-                <div
-                  style={{
-                    fontFamily: "var(--font-jetbrains-mono, monospace)",
-                    fontSize: "0.75rem",
-                    color: "#3e3e50",
-                    background: "#141418",
-                    border: "1px solid #1c1c24",
-                    borderRadius: 4,
-                    padding: "4px 10px",
-                    display: "inline-block",
-                  }}
-                >
-                  {step.detail}
-                </div>
-              </div>
+        {/* Setup group */}
+        <div>
+          <p style={groupLabelStyle}>Set up once</p>
+          <div className="steps-grid-2">
+            <StepCard step={setupSteps[0]} delayClass={delayClasses[0]} />
+            <div className="step-connector">
+              <ArrowIcon />
             </div>
-          ))}
+            <StepCard step={setupSteps[1]} delayClass={delayClasses[1]} />
+          </div>
+        </div>
+
+        {/* Per-issue group */}
+        <div style={{ marginTop: 40 }}>
+          <p style={groupLabelStyle}>Every issue</p>
+          <div className="steps-grid-3">
+            <StepCard step={flowSteps[0]} delayClass={delayClasses[2]} />
+            <div className="step-connector">
+              <ArrowIcon />
+            </div>
+            <StepCard step={flowSteps[1]} delayClass={delayClasses[3]} />
+            <div className="step-connector">
+              <ArrowIcon />
+            </div>
+            <StepCard step={flowSteps[2]} delayClass={delayClasses[4]} />
+          </div>
         </div>
       </div>
     </section>
