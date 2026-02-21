@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { CopyButton } from "./copy-button";
 import { GITHUB_URL } from "@/lib/github-url";
@@ -1012,9 +1013,8 @@ function HooksFlowDiagram() {
     <div style={{ overflowX: "auto", marginBottom: 40 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 0, width: "max-content" }}>
         {hooksFlowSteps.map((step, i) => (
-          <>
+          <React.Fragment key={step.label}>
             <div
-              key={step.label}
               style={{
                 padding: "14px 20px",
                 border: `1px solid ${step.accent ? "rgba(167,139,250,0.3)" : "#1c1c24"}`,
@@ -1031,13 +1031,13 @@ function HooksFlowDiagram() {
               </span>
             </div>
             {i < hooksFlowSteps.length - 1 && (
-              <div key={`arrow-${i}`} style={{ padding: "0 12px", color: "#2c2c3a", flexShrink: 0 }}>
+              <div style={{ padding: "0 12px", color: "#2c2c3a", flexShrink: 0 }}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M3 8h10M9 4l4 4-4 4" />
                 </svg>
               </div>
             )}
-          </>
+          </React.Fragment>
         ))}
       </div>
     </div>
