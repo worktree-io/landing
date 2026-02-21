@@ -27,60 +27,17 @@ function buildWorktreeUrl(p: IssueParams): string {
 /* ─── sub-components ──────────────────────────────────────────────────── */
 function IssueCard({ params }: { params: IssueParams }) {
   return (
-    <div
-      style={{
-        border: "1px solid #1c1c24",
-        borderRadius: 8,
-        overflow: "hidden",
-        background: "#0d0d10",
-        marginBottom: 28,
-      }}
-    >
-      <div
-        style={{
-          padding: "10px 16px",
-          borderBottom: "1px solid #1c1c24",
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "var(--font-syne, sans-serif)",
-            fontSize: "0.8125rem",
-            color: "#9090a8",
-          }}
-        >
-          <span style={{ color: "#ebebef", fontWeight: 600 }}>{params.owner}</span>
-          <span style={{ margin: "0 4px" }}>/</span>
-          <span style={{ color: "#ebebef", fontWeight: 600 }}>{params.repo}</span>
+    <div className="issue-card">
+      <div className="issue-card-header">
+        <span className="issue-card-repo">
+          <span className="issue-card-repo-name">{params.owner}</span>
+          <span className="issue-card-slash">/</span>
+          <span className="issue-card-repo-name">{params.repo}</span>
         </span>
-        <div
-          style={{
-            marginLeft: "auto",
-            fontFamily: "var(--font-jetbrains-mono, monospace)",
-            fontSize: "0.75rem",
-            color: "#a78bfa",
-            background: "rgba(167,139,250,0.1)",
-            border: "1px solid rgba(167,139,250,0.2)",
-            borderRadius: 4,
-            padding: "2px 8px",
-          }}
-        >
-          #{params.issue}
-        </div>
+        <div className="issue-card-badge">#{params.issue}</div>
       </div>
-      <div style={{ padding: "12px 16px" }}>
-        <div
-          style={{
-            fontFamily: "var(--font-jetbrains-mono, monospace)",
-            fontSize: "0.75rem",
-            color: "#3e3e50",
-          }}
-        >
-          {buildWorktreeUrl(params)}
-        </div>
+      <div className="issue-card-body">
+        <div className="issue-card-url">{buildWorktreeUrl(params)}</div>
       </div>
     </div>
   );
@@ -88,31 +45,11 @@ function IssueCard({ params }: { params: IssueParams }) {
 
 function InstallGuide() {
   return (
-    <div
-      className="anim-fade-up"
-      style={{
-        border: "1px solid #1c1c24",
-        borderRadius: 10,
-        overflow: "hidden",
-        background: "#0d0d10",
-      }}
-    >
-      <div style={{ padding: 20 }}>
+    <div className="install-guide anim-fade-up">
+      <div className="install-guide-body">
         {/* Step 1: Install */}
-        <div style={{ marginBottom: 16 }}>
-          <div
-            style={{
-              fontFamily: "var(--font-syne, sans-serif)",
-              fontSize: "0.75rem",
-              fontWeight: 700,
-              color: "#a78bfa",
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              marginBottom: 8,
-            }}
-          >
-            1 — Install
-          </div>
+        <div className="guide-step">
+          <div className="guide-step-label">1 — Install</div>
           <div className="code-block">
             <span className="prompt">$ </span>
             {INSTALL_CMD}
@@ -120,43 +57,14 @@ function InstallGuide() {
         </div>
 
         {/* Step 2: Setup */}
-        <div>
-          <div
-            style={{
-              fontFamily: "var(--font-syne, sans-serif)",
-              fontSize: "0.75rem",
-              fontWeight: 700,
-              color: "#a78bfa",
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              marginBottom: 8,
-            }}
-          >
-            2 — Setup
-          </div>
+        <div className="guide-step">
+          <div className="guide-step-label">2 — Setup</div>
           <div className="code-block">
             <span className="prompt">$ </span>
             worktree setup
           </div>
-          <p
-            style={{
-              fontSize: "0.8rem",
-              color: "#9090a8",
-              marginTop: 8,
-              lineHeight: 1.6,
-            }}
-          >
-            Registers the <code
-              style={{
-                fontFamily: "var(--font-jetbrains-mono, monospace)",
-                fontSize: "0.75rem",
-                color: "#ebebef",
-                background: "#141418",
-                border: "1px solid #1c1c24",
-                borderRadius: 3,
-                padding: "0 5px",
-              }}
-            >worktree://</code> URL scheme and selects your editor.
+          <p className="guide-step-note">
+            Registers the <code className="inline-code">worktree://</code> URL scheme and selects your editor.
           </p>
         </div>
       </div>
@@ -202,85 +110,28 @@ export default function OpenPage() {
   }
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "#070708",
-        color: "#ebebef",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div className="open-page">
       {/* Nav */}
-      <header
-        style={{
-          borderBottom: "1px solid #1c1c24",
-          padding: "0 24px",
-          height: 56,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexShrink: 0,
-        }}
-      >
-        <Link
-          href="/"
-          style={{
-            fontFamily: "var(--font-syne, sans-serif)",
-            fontWeight: 800,
-            fontSize: "1.05rem",
-            letterSpacing: "-0.02em",
-            color: "#ebebef",
-            textDecoration: "none",
-          }}
-        >
-          Worktree
-        </Link>
+      <header className="open-nav">
+        <Link href="/" className="open-nav-brand">Worktree</Link>
         <a
           href={GITHUB_URL}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            fontFamily: "var(--font-syne, sans-serif)",
-            fontSize: "0.8125rem",
-            fontWeight: 600,
-            color: "#3e3e50",
-            textDecoration: "none",
-          }}
+          className="open-nav-link"
         >
           GitHub
         </a>
       </header>
 
       {/* Main content */}
-      <main
-        style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "48px 24px",
-        }}
-      >
-        <div style={{ width: "100%", maxWidth: 480 }}>
+      <main className="open-main">
+        <div className="open-content">
 
           {/* ── NO PARAMS ─────────────────────────────────────────── */}
           {phase === "no-params" && (
-            <div className="anim-fade-up" style={{ textAlign: "center" }}>
-              <div
-                style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: "50%",
-                  border: "1px solid #2c2c3a",
-                  background: "#0d0d10",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: "0 auto 20px",
-                }}
-              >
+            <div className="no-params-center anim-fade-up">
+              <div className="no-params-icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path
                     d="M10 6v5M10 14h.01M19 10A9 9 0 1 1 1 10a9 9 0 0 1 18 0Z"
@@ -290,41 +141,11 @@ export default function OpenPage() {
                   />
                 </svg>
               </div>
-              <h1
-                style={{
-                  fontFamily: "var(--font-syne, sans-serif)",
-                  fontWeight: 700,
-                  fontSize: "1.25rem",
-                  letterSpacing: "-0.02em",
-                  color: "#ebebef",
-                  marginBottom: 10,
-                }}
-              >
-                No issue specified
-              </h1>
-              <p
-                style={{
-                  fontSize: "0.875rem",
-                  color: "#9090a8",
-                  lineHeight: 1.7,
-                  marginBottom: 24,
-                }}
-              >
+              <h1 className="no-params-title">No issue specified</h1>
+              <p className="no-params-body">
                 This page is meant to be opened from a GitHub issue comment.
                 The link should include{" "}
-                <code
-                  style={{
-                    fontFamily: "var(--font-jetbrains-mono, monospace)",
-                    fontSize: "0.8rem",
-                    color: "#ebebef",
-                    background: "#141418",
-                    border: "1px solid #1c1c24",
-                    borderRadius: 3,
-                    padding: "0 5px",
-                  }}
-                >
-                  ?owner=…&repo=…&issue=…
-                </code>{" "}
+                <code className="inline-code">?owner=…&repo=…&issue=…</code>{" "}
                 parameters.
               </p>
               <Link href="/" className="btn-ghost">
@@ -335,85 +156,31 @@ export default function OpenPage() {
 
           {/* ── LOADING ──────────────────────────────────────────── */}
           {phase === "loading" && (
-            <div style={{ textAlign: "center" }}>
-              <div
-                style={{
-                  width: 40,
-                  height: 40,
-                  border: "2px solid #1c1c24",
-                  borderTopColor: "#a78bfa",
-                  borderRadius: "50%",
-                  margin: "0 auto",
-                }}
-                className="anim-spin"
-              />
+            <div className="loading-center">
+              <div className="spinner-lg anim-spin" />
             </div>
           )}
 
           {/* ── OPENING ──────────────────────────────────────────── */}
           {(phase === "opening" || phase === "success") && params && (
-            <div>
+            <div className="phase-content">
               {/* Status row */}
-              <div
-                className="anim-fade-up"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  marginBottom: 28,
-                }}
-              >
+              <div className="status-row anim-fade-up">
                 {phase === "opening" ? (
                   <>
-                    <div
-                      style={{
-                        width: 32,
-                        height: 32,
-                        border: "2px solid #1c1c24",
-                        borderTopColor: "#a78bfa",
-                        borderRadius: "50%",
-                        flexShrink: 0,
-                      }}
-                      className="anim-spin"
-                    />
-                    <div>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-syne, sans-serif)",
-                          fontWeight: 700,
-                          fontSize: "1.1rem",
-                          letterSpacing: "-0.02em",
-                          color: "#ebebef",
-                        }}
-                      >
+                    <div className="spinner-sm anim-spin" />
+                    <div className="status-info">
+                      <div className="status-label status-label--opening">
                         Opening workspace
                       </div>
-                      <div
-                        style={{
-                          fontSize: "0.8125rem",
-                          color: "#9090a8",
-                          marginTop: 2,
-                        }}
-                      >
+                      <div className="status-detail">
                         Launching Worktree daemon…
                       </div>
                     </div>
                   </>
                 ) : (
                   <>
-                    <div
-                      style={{
-                        width: 32,
-                        height: 32,
-                        background: "rgba(62,255,160,0.1)",
-                        border: "1px solid rgba(62,255,160,0.3)",
-                        borderRadius: "50%",
-                        flexShrink: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
+                    <div className="status-icon-success">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <path
                           d="M2 7l3.5 3.5L12 3"
@@ -424,25 +191,11 @@ export default function OpenPage() {
                         />
                       </svg>
                     </div>
-                    <div>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-syne, sans-serif)",
-                          fontWeight: 700,
-                          fontSize: "1.1rem",
-                          letterSpacing: "-0.02em",
-                          color: "#3effa0",
-                        }}
-                      >
+                    <div className="status-info">
+                      <div className="status-label status-label--success">
                         Workspace opened
                       </div>
-                      <div
-                        style={{
-                          fontSize: "0.8125rem",
-                          color: "#9090a8",
-                          marginTop: 2,
-                        }}
-                      >
+                      <div className="status-detail">
                         Your editor should be in focus
                       </div>
                     </div>
@@ -456,28 +209,12 @@ export default function OpenPage() {
               {/* Confirmation / feedback */}
               {phase === "opening" && (
                 <div className="anim-fade-up d-300">
-                  <div
-                    style={{
-                      borderTop: "1px solid #1c1c24",
-                      paddingTop: 20,
-                      marginBottom: 16,
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: "0.8125rem",
-                        color: "#9090a8",
-                        marginBottom: 14,
-                        lineHeight: 1.6,
-                      }}
-                    >
-                      Did your editor open?
-                    </p>
-                    <div style={{ display: "flex", gap: 10 }}>
+                  <div className="confirm-section">
+                    <p className="confirm-question">Did your editor open?</p>
+                    <div className="confirm-actions">
                       <button
                         onClick={() => setPhase("success")}
-                        className="btn-accent"
-                        style={{ flex: 1, justifyContent: "center" }}
+                        className="btn-accent btn--flex1"
                       >
                         <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                           <path
@@ -492,32 +229,14 @@ export default function OpenPage() {
                       </button>
                       <button
                         onClick={() => setPhase("install")}
-                        className="btn-ghost"
-                        style={{ flex: 1, justifyContent: "center" }}
+                        className="btn-ghost btn--flex1"
                       >
                         No, install Worktree
                       </button>
                     </div>
                   </div>
 
-                  <button
-                    onClick={handleRetry}
-                    style={{
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      fontFamily: "var(--font-syne, sans-serif)",
-                      fontSize: "0.8rem",
-                      color: "#3e3e50",
-                      padding: 0,
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 5,
-                      transition: "color 0.15s",
-                    }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#9090a8")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#3e3e50")}
-                  >
+                  <button onClick={handleRetry} className="retry-btn">
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
                       <path
                         d="M1 5.5A4.5 4.5 0 0 1 9.7 3M10 5.5A4.5 4.5 0 0 1 1.3 8"
@@ -534,16 +253,8 @@ export default function OpenPage() {
               )}
 
               {phase === "success" && (
-                <div className="anim-fade-up" style={{ textAlign: "center" }}>
-                  <p
-                    style={{
-                      fontSize: "0.8125rem",
-                      color: "#3e3e50",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    You can close this tab.
-                  </p>
+                <div className="anim-fade-up">
+                  <p className="close-tab-text">You can close this tab.</p>
                 </div>
               )}
             </div>
@@ -551,58 +262,18 @@ export default function OpenPage() {
 
           {/* ── INSTALL ──────────────────────────────────────────── */}
           {phase === "install" && (
-            <div>
+            <div className="phase-content">
               {/* Header */}
-              <div
-                className="anim-fade-up"
-                style={{ marginBottom: 24 }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                    marginBottom: 8,
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 8,
-                      height: 8,
-                      borderRadius: "50%",
-                      background: "#ff5a5a",
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontFamily: "var(--font-syne, sans-serif)",
-                      fontSize: "0.75rem",
-                      fontWeight: 700,
-                      color: "#ff5a5a",
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    Worktree not detected
-                  </span>
+              <div className="install-phase-header anim-fade-up">
+                <div className="not-detected-row">
+                  <div className="not-detected-dot" />
+                  <span className="not-detected-label">Worktree not detected</span>
                 </div>
-                <h1
-                  style={{
-                    fontFamily: "var(--font-syne, sans-serif)",
-                    fontWeight: 700,
-                    fontSize: "1.25rem",
-                    letterSpacing: "-0.02em",
-                    color: "#ebebef",
-                    marginBottom: 8,
-                  }}
-                >
+                <h1 className="install-phase-title">
                   Install Worktree to open this workspace
                 </h1>
                 {params && (
-                  <p
-                    style={{ fontSize: "0.8125rem", color: "#9090a8", lineHeight: 1.6 }}
-                  >
+                  <p className="install-phase-body">
                     Once installed, come back and click the issue link again.
                   </p>
                 )}
@@ -616,11 +287,10 @@ export default function OpenPage() {
 
               {/* Try again link */}
               {params && (
-                <div style={{ marginTop: 20, textAlign: "center" }}>
+                <div className="install-try-again">
                   <button
                     onClick={handleRetry}
-                    className="btn-ghost"
-                    style={{ width: "100%", justifyContent: "center" }}
+                    className="btn-ghost btn-accent--full"
                   >
                     I installed it — try opening again
                   </button>
@@ -632,31 +302,14 @@ export default function OpenPage() {
       </main>
 
       {/* Footer */}
-      <footer
-        style={{
-          borderTop: "1px solid #1c1c24",
-          padding: "16px 24px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 6,
-          flexShrink: 0,
-        }}
-      >
-        <span style={{ fontSize: "0.75rem", color: "#2e2e3c" }}>
-          Worktree — open source
-        </span>
-        <span style={{ color: "#1c1c24" }}>·</span>
+      <footer className="open-footer">
+        <span className="open-footer-text">Worktree — open source</span>
+        <span className="open-footer-sep">·</span>
         <a
           href={GITHUB_URL}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            fontSize: "0.75rem",
-            color: "#3e3e50",
-            textDecoration: "none",
-            fontFamily: "var(--font-syne, sans-serif)",
-          }}
+          className="open-footer-link"
         >
           GitHub
         </a>

@@ -6,8 +6,6 @@ import config from "eslint-config-agent";
 const uiOverrides = {
   files: ["src/**/*.{ts,tsx}"],
   rules: {
-    // React UI components use inline styles rather than className-based styling
-    "jsx-classname/require-classname": "off",
     // UI component files and functions are naturally longer than utility code
     "max-lines": "off",
     "max-lines-per-function": "off",

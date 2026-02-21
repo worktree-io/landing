@@ -15,22 +15,7 @@ export function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 5,
-        background: "transparent",
-        border: "1px solid #2c2c3a",
-        borderRadius: 5,
-        padding: "3px 10px",
-        fontFamily: "var(--font-syne, sans-serif)",
-        fontSize: "0.75rem",
-        fontWeight: 600,
-        color: copied ? "#a78bfa" : "#9090a8",
-        cursor: "pointer",
-        transition: "color 0.15s, border-color 0.15s",
-        flexShrink: 0,
-      }}
+      className={`copy-btn ${copied ? "copy-btn--copied" : "copy-btn--default"}`}
     >
       {copied ? (
         <>
