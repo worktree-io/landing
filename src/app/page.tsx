@@ -1088,8 +1088,409 @@ function InstallSection() {
               >
                 worktree://
               </code>{" "}
-              URL scheme and lets you choose your editor.
+              URL scheme and lets you choose your editor. You can also{" "}
+              <a
+                href="#hooks"
+                style={{
+                  fontFamily: "var(--font-jetbrains-mono, monospace)",
+                  fontSize: "0.75rem",
+                  color: "#a78bfa",
+                  textDecoration: "none",
+                }}
+              >
+                configure hooks
+              </a>{" "}
+              to run scripts when a workspace opens.
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Hooks */
+const HOOKS_TOML = `[hooks]
+"pre:open"  = "npm install"
+"post:open" = "notify-send 'Worktree' '{{repo}}#{{issue}} is ready'"`;
+
+function HooksSection() {
+  const vars = [
+    { name: "{{owner}}", desc: "GitHub username or org that owns the repo" },
+    { name: "{{repo}}", desc: "Repository name" },
+    { name: "{{issue}}", desc: "Issue number" },
+    { name: "{{branch}}", desc: "Branch name, e.g. issue-42" },
+    { name: "{{worktree}}", desc: "Absolute path to the worktree directory" },
+  ];
+
+  const flowSteps = [
+    { label: "pre:open", note: "runs first", accent: true },
+    { label: "editor", note: "launches", accent: false },
+    { label: "post:open", note: "runs after", accent: true },
+  ];
+
+  return (
+    <section
+      id="hooks"
+      style={{ padding: "80px 24px", borderTop: "1px solid #1c1c24" }}
+    >
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        {/* Header */}
+        <div style={{ maxWidth: 620, marginBottom: 48 }}>
+          <p
+            style={{
+              fontFamily: "var(--font-syne, sans-serif)",
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "#a78bfa",
+              marginBottom: 12,
+            }}
+          >
+            Configuration
+          </p>
+          <h2
+            style={{
+              fontFamily: "var(--font-syne, sans-serif)",
+              fontWeight: 700,
+              fontSize: "clamp(1.5rem, 3vw, 2rem)",
+              letterSpacing: "-0.025em",
+              color: "#ebebef",
+              marginBottom: 16,
+            }}
+          >
+            Run scripts when a workspace opens.
+          </h2>
+          <p
+            style={{
+              fontSize: "0.9375rem",
+              color: "#9090a8",
+              lineHeight: 1.7,
+            }}
+          >
+            The{" "}
+            <code
+              style={{
+                fontFamily: "var(--font-jetbrains-mono, monospace)",
+                fontSize: "0.85em",
+                color: "#ebebef",
+                background: "#141418",
+                border: "1px solid #1c1c24",
+                borderRadius: 3,
+                padding: "0 5px",
+              }}
+            >
+              [hooks]
+            </code>{" "}
+            section in your config file lets you run bash scripts before and
+            after the editor launches. Variables are injected with Mustache
+            syntax.
+          </p>
+        </div>
+
+        {/* Execution order flow */}
+        <div style={{ overflowX: "auto", marginBottom: 40 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 0,
+            width: "max-content",
+          }}
+        >
+          {flowSteps.map((step, i) => (
+            <>
+              <div
+                key={step.label}
+                style={{
+                  padding: "14px 20px",
+                  border: `1px solid ${step.accent ? "rgba(167,139,250,0.3)" : "#1c1c24"}`,
+                  borderRadius: 8,
+                  background: step.accent ? "rgba(167,139,250,0.06)" : "#0d0d10",
+                  flexShrink: 0,
+                }}
+              >
+                <code
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono, monospace)",
+                    fontSize: "0.8125rem",
+                    fontWeight: 600,
+                    color: step.accent ? "#a78bfa" : "#ebebef",
+                    display: "block",
+                    marginBottom: 4,
+                  }}
+                >
+                  {step.label}
+                </code>
+                <span
+                  style={{
+                    fontFamily: "var(--font-syne, sans-serif)",
+                    fontSize: "0.7rem",
+                    color: "#3e3e50",
+                  }}
+                >
+                  {step.note}
+                </span>
+              </div>
+              {i < flowSteps.length - 1 && (
+                <div
+                  key={`arrow-${i}`}
+                  style={{
+                    padding: "0 12px",
+                    color: "#2c2c3a",
+                    flexShrink: 0,
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4" />
+                  </svg>
+                </div>
+              )}
+            </>
+          ))}
+        </div>
+        </div>
+
+        {/* Two-column layout: TOML block | Variables */}
+        <div className="hooks-grid">
+          {/* TOML config block */}
+          <div>
+            <p
+              style={{
+                fontFamily: "var(--font-syne, sans-serif)",
+                fontSize: "0.7rem",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "#9090a8",
+                marginBottom: 12,
+              }}
+            >
+              Config snippet
+            </p>
+            <div
+              style={{
+                border: "1px solid rgba(167,139,250,0.2)",
+                borderRadius: 10,
+                overflow: "hidden",
+                background: "rgba(167,139,250,0.03)",
+              }}
+            >
+              {/* Header */}
+              <div
+                style={{
+                  padding: "10px 16px",
+                  borderBottom: "1px solid rgba(167,139,250,0.12)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 12,
+                }}
+              >
+                <code
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono, monospace)",
+                    fontSize: "0.75rem",
+                    color: "#a78bfa",
+                  }}
+                >
+                  ~/.config/worktree/config.toml
+                </code>
+                <CopyButton text={HOOKS_TOML} />
+              </div>
+              {/* TOML */}
+              <pre
+                style={{
+                  fontFamily: "var(--font-jetbrains-mono, monospace)",
+                  fontSize: "0.8125rem",
+                  lineHeight: 1.65,
+                  color: "#ebebef",
+                  padding: "20px 24px",
+                  overflowX: "auto",
+                  margin: 0,
+                }}
+              >
+                <span style={{ color: "#a78bfa" }}>[hooks]</span>{"\n"}
+                <span style={{ color: "#9090a8" }}>&quot;pre:open&quot;</span>
+                {"  = "}
+                <span style={{ color: "#4ade80" }}>&quot;npm install&quot;</span>{"\n"}
+                <span style={{ color: "#9090a8" }}>&quot;post:open&quot;</span>
+                {" = "}
+                <span style={{ color: "#4ade80" }}>&quot;echo ready&quot;</span>
+              </pre>
+            </div>
+
+            {/* Failure behaviour note */}
+            <div
+              style={{
+                marginTop: 14,
+                display: "flex",
+                alignItems: "flex-start",
+                gap: 10,
+                paddingLeft: 2,
+              }}
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                style={{ marginTop: 2, flexShrink: 0 }}
+              >
+                <circle cx="7" cy="7" r="5.5" stroke="#3e3e50" strokeWidth="1.2" />
+                <path d="M7 6.5v3M7 4.5v.5" stroke="#3e3e50" strokeWidth="1.3" strokeLinecap="round" />
+              </svg>
+              <p style={{ fontSize: "0.8125rem", color: "#3e3e50", lineHeight: 1.6 }}>
+                A non-zero exit code from either hook shows a warning but does
+                not stop the workspace from opening.
+              </p>
+            </div>
+          </div>
+
+          {/* Mustache variables */}
+          <div>
+            <p
+              style={{
+                fontFamily: "var(--font-syne, sans-serif)",
+                fontSize: "0.7rem",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "#9090a8",
+                marginBottom: 12,
+              }}
+            >
+              Available variables
+            </p>
+            <div
+              style={{
+                border: "1px solid #1c1c24",
+                borderRadius: 10,
+                overflow: "hidden",
+              }}
+            >
+              {vars.map((v, i) => (
+                <div
+                  key={v.name}
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: 16,
+                    padding: "12px 16px",
+                    borderBottom: i < vars.length - 1 ? "1px solid #1c1c24" : undefined,
+                    background: i % 2 === 0 ? "transparent" : "#0a0a0d",
+                  }}
+                >
+                  <code
+                    style={{
+                      fontFamily: "var(--font-jetbrains-mono, monospace)",
+                      fontSize: "0.78125rem",
+                      color: "#a78bfa",
+                      background: "rgba(167,139,250,0.08)",
+                      border: "1px solid rgba(167,139,250,0.15)",
+                      borderRadius: 4,
+                      padding: "1px 7px",
+                      flexShrink: 0,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {v.name}
+                  </code>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-syne, sans-serif)",
+                      fontSize: "0.8125rem",
+                      color: "#9090a8",
+                      lineHeight: 1.5,
+                      paddingTop: 2,
+                    }}
+                  >
+                    {v.desc}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Practical example tip */}
+            <div
+              style={{
+                marginTop: 16,
+                padding: "16px 18px",
+                background: "rgba(167,139,250,0.04)",
+                border: "1px solid rgba(167,139,250,0.15)",
+                borderRadius: 8,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 7,
+                  marginBottom: 10,
+                }}
+              >
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                  <circle cx="6.5" cy="6.5" r="5.5" stroke="#a78bfa" strokeWidth="1.2" />
+                  <path d="M6.5 5v4M6.5 3.5v.5" stroke="#a78bfa" strokeWidth="1.3" strokeLinecap="round" />
+                </svg>
+                <span
+                  style={{
+                    fontFamily: "var(--font-syne, sans-serif)",
+                    fontSize: "0.75rem",
+                    fontWeight: 700,
+                    color: "#a78bfa",
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  Tip
+                </span>
+              </div>
+              <p
+                style={{
+                  fontFamily: "var(--font-syne, sans-serif)",
+                  fontSize: "0.8125rem",
+                  color: "#9090a8",
+                  lineHeight: 1.65,
+                  marginBottom: 10,
+                }}
+              >
+                Use{" "}
+                <code
+                  style={{
+                    fontFamily: "var(--font-jetbrains-mono, monospace)",
+                    fontSize: "0.8em",
+                    color: "#ebebef",
+                    background: "#141418",
+                    border: "1px solid #1c1c24",
+                    borderRadius: 3,
+                    padding: "0 4px",
+                  }}
+                >
+                  pre:open
+                </code>{" "}
+                to install dependencies or configure git before the editor
+                launches:
+              </p>
+              <pre
+                style={{
+                  fontFamily: "var(--font-jetbrains-mono, monospace)",
+                  fontSize: "0.75rem",
+                  color: "#9090a8",
+                  background: "#0d0d10",
+                  border: "1px solid #1c1c24",
+                  borderRadius: 6,
+                  padding: "10px 14px",
+                  overflowX: "auto",
+                  margin: 0,
+                }}
+              >
+                <span style={{ color: "#a78bfa" }}>[hooks]</span>{"\n"}
+                <span style={{ color: "#9090a8" }}>&quot;pre:open&quot;</span>
+                {" = "}
+                <span style={{ color: "#4ade80" }}>&quot;npm install&quot;</span>
+              </pre>
+            </div>
           </div>
         </div>
       </div>
@@ -1351,6 +1752,7 @@ export default function Home() {
       <EditorSection />
       <InstallSection />
       <ActionSection />
+      <HooksSection />
       <Footer />
     </div>
   );

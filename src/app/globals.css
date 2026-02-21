@@ -191,6 +191,12 @@ body {
     gap: 16px;
   }
 
+  .hooks-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
   .footer-inner {
     display: flex;
     align-items: center;
@@ -289,6 +295,12 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+  }
+}
+
+@media (min-width: 860px) {
+  .hooks-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
