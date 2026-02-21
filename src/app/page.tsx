@@ -1190,13 +1190,13 @@ function HooksSection() {
         </div>
 
         {/* Execution order flow */}
+        <div style={{ overflowX: "auto", marginBottom: 40 }}>
         <div
           style={{
             display: "flex",
             alignItems: "center",
             gap: 0,
-            marginBottom: 40,
-            overflowX: "auto",
+            width: "max-content",
           }}
         >
           {flowSteps.map((step, i) => (
@@ -1249,6 +1249,7 @@ function HooksSection() {
               )}
             </>
           ))}
+        </div>
         </div>
 
         {/* Two-column layout: TOML block | Variables */}
@@ -1310,15 +1311,13 @@ function HooksSection() {
                   margin: 0,
                 }}
               >
-                <span style={{ color: "#9090a8" }}># [hooks] in your config file</span>{"\n"}
-                {"\n"}
                 <span style={{ color: "#a78bfa" }}>[hooks]</span>{"\n"}
                 <span style={{ color: "#9090a8" }}>&quot;pre:open&quot;</span>
                 {"  = "}
                 <span style={{ color: "#4ade80" }}>&quot;npm install&quot;</span>{"\n"}
                 <span style={{ color: "#9090a8" }}>&quot;post:open&quot;</span>
                 {" = "}
-                <span style={{ color: "#4ade80" }}>&quot;notify-send &apos;Worktree&apos; &apos;{"{{repo}}"}#{"{{issue}}"} is ready&apos;&quot;</span>
+                <span style={{ color: "#4ade80" }}>&quot;echo ready&quot;</span>
               </pre>
             </div>
 
@@ -1489,7 +1488,7 @@ function HooksSection() {
                 <span style={{ color: "#a78bfa" }}>[hooks]</span>{"\n"}
                 <span style={{ color: "#9090a8" }}>&quot;pre:open&quot;</span>
                 {" = "}
-                <span style={{ color: "#4ade80" }}>&quot;npm install &amp;&amp; git config user.email you@example.com&quot;</span>
+                <span style={{ color: "#4ade80" }}>&quot;npm install&quot;</span>
               </pre>
             </div>
           </div>
