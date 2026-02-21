@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { CopyButton } from "./copy-button";
 import { GITHUB_URL } from "@/lib/github-url";
@@ -547,9 +548,8 @@ function HooksSection() {
         <div className="hooks-flow-scroll">
           <div className="hooks-flow-inner">
             {flowSteps.map((step, i) => (
-              <>
+              <React.Fragment key={step.label}>
                 <div
-                  key={step.label}
                   className={`flow-step ${step.accent ? "flow-step--accent" : "flow-step--default"}`}
                 >
                   <code className={`flow-step-label ${step.accent ? "flow-step-label--accent" : "flow-step-label--default"}`}>
@@ -558,13 +558,13 @@ function HooksSection() {
                   <span className="flow-step-note">{step.note}</span>
                 </div>
                 {i < flowSteps.length - 1 && (
-                  <div key={`arrow-${i}`} className="flow-arrow">
+                  <div className="flow-arrow">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 8h10M9 4l4 4-4 4" />
                     </svg>
                   </div>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>
