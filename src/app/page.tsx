@@ -496,8 +496,160 @@ function InstallSection() {
             <p className="install-note-body">
               Registers the{" "}
               <code className="inline-code">worktree://</code>{" "}
-              URL scheme and lets you choose your editor.
+              URL scheme and lets you choose your editor. You can also{" "}
+              <a href="#hooks" className="hooks-link">configure hooks</a>{" "}
+              to run scripts when a workspace opens.
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Hooks */
+const HOOKS_TOML = `[hooks]
+"pre:open"  = "npm install"
+"post:open" = "notify-send 'Worktree' '{{repo}}#{{issue}} is ready'"`;
+
+function HooksSection() {
+  const vars = [
+    { name: "{{owner}}", desc: "GitHub username or org that owns the repo" },
+    { name: "{{repo}}", desc: "Repository name" },
+    { name: "{{issue}}", desc: "Issue number" },
+    { name: "{{branch}}", desc: "Branch name, e.g. issue-42" },
+    { name: "{{worktree}}", desc: "Absolute path to the worktree directory" },
+  ];
+
+  const flowSteps = [
+    { label: "pre:open", note: "runs first", accent: true },
+    { label: "editor", note: "launches", accent: false },
+    { label: "post:open", note: "runs after", accent: true },
+  ];
+
+  return (
+    <section id="hooks" className="hooks-section">
+      <div className="section-inner">
+        {/* Header */}
+        <div className="hooks-header">
+          <p className="section-eyebrow">Configuration</p>
+          <h2 className="section-title">Run scripts when a workspace opens.</h2>
+          <p className="section-body">
+            The{" "}
+            <code className="inline-code">[hooks]</code>{" "}
+            section in your config file lets you run bash scripts before and
+            after the editor launches. Variables are injected with Mustache
+            syntax.
+          </p>
+        </div>
+
+        {/* Execution order flow */}
+        <div className="hooks-flow-scroll">
+          <div className="hooks-flow-inner">
+            {flowSteps.map((step, i) => (
+              <>
+                <div
+                  key={step.label}
+                  className={`flow-step ${step.accent ? "flow-step--accent" : "flow-step--default"}`}
+                >
+                  <code className={`flow-step-label ${step.accent ? "flow-step-label--accent" : "flow-step-label--default"}`}>
+                    {step.label}
+                  </code>
+                  <span className="flow-step-note">{step.note}</span>
+                </div>
+                {i < flowSteps.length - 1 && (
+                  <div key={`arrow-${i}`} className="flow-arrow">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 8h10M9 4l4 4-4 4" />
+                    </svg>
+                  </div>
+                )}
+              </>
+            ))}
+          </div>
+        </div>
+
+        {/* Two-column layout: TOML block | Variables */}
+        <div className="hooks-grid">
+          {/* TOML config block */}
+          <div className="hooks-toml-col">
+            <p className="group-label">Config snippet</p>
+            <div className="hooks-toml-block">
+              {/* Header */}
+              <div className="hooks-toml-header">
+                <code className="hooks-toml-filename">
+                  ~/.config/worktree/config.toml
+                </code>
+                <CopyButton text={HOOKS_TOML} />
+              </div>
+              {/* TOML */}
+              <pre className="hooks-toml-pre">
+                <span className="hooks-toml-kw">[hooks]</span>{"\n"}
+                <span className="hooks-toml-key">&quot;pre:open&quot;</span>
+                {"  = "}
+                <span className="hooks-toml-value">&quot;npm install&quot;</span>{"\n"}
+                <span className="hooks-toml-key">&quot;post:open&quot;</span>
+                {" = "}
+                <span className="hooks-toml-value">&quot;echo ready&quot;</span>
+              </pre>
+            </div>
+
+            {/* Failure behaviour note */}
+            <div className="hooks-failure-note">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                className="hooks-failure-icon"
+              >
+                <circle cx="7" cy="7" r="5.5" stroke="#3e3e50" strokeWidth="1.2" />
+                <path d="M7 6.5v3M7 4.5v.5" stroke="#3e3e50" strokeWidth="1.3" strokeLinecap="round" />
+              </svg>
+              <p className="hooks-failure-text">
+                A non-zero exit code from either hook shows a warning but does
+                not stop the workspace from opening.
+              </p>
+            </div>
+          </div>
+
+          {/* Mustache variables */}
+          <div className="hooks-vars-col">
+            <p className="group-label">Available variables</p>
+            <div className="hooks-vars-table">
+              {vars.map((v, i) => (
+                <div
+                  key={v.name}
+                  className={`hooks-var-row ${i % 2 === 0 ? "hooks-var-row--even" : "hooks-var-row--odd"} ${i < vars.length - 1 ? "hooks-var-row--bordered" : ""}`}
+                >
+                  <code className="hooks-var-name">{v.name}</code>
+                  <span className="hooks-var-desc">{v.desc}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Practical example tip */}
+            <div className="hooks-tip">
+              <div className="hooks-tip-header">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                  <circle cx="6.5" cy="6.5" r="5.5" stroke="#a78bfa" strokeWidth="1.2" />
+                  <path d="M6.5 5v4M6.5 3.5v.5" stroke="#a78bfa" strokeWidth="1.3" strokeLinecap="round" />
+                </svg>
+                <span className="hooks-tip-label">Tip</span>
+              </div>
+              <p className="hooks-tip-body">
+                Use{" "}
+                <code className="inline-code inline-code--em80">pre:open</code>{" "}
+                to install dependencies or configure git before the editor
+                launches:
+              </p>
+              <pre className="hooks-tip-pre">
+                <span className="hooks-toml-kw">[hooks]</span>{"\n"}
+                <span className="hooks-toml-key">&quot;pre:open&quot;</span>
+                {" = "}
+                <span className="hooks-toml-value">&quot;npm install&quot;</span>
+              </pre>
+            </div>
           </div>
         </div>
       </div>
@@ -637,6 +789,7 @@ export default function Home() {
       <EditorSection />
       <InstallSection />
       <ActionSection />
+      <HooksSection />
       <Footer />
     </div>
   );
