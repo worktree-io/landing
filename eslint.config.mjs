@@ -8,7 +8,6 @@ const uiOverrides = {
   rules: {
     // UI component files and functions are naturally longer than utility code
     "max-lines": "off",
-    "max-lines-per-function": "off",
     // Nullish coalescing and optional chaining are idiomatic in React/TS UI code
     "no-restricted-syntax": "off",
     "no-optional-chaining/no-optional-chaining": "off",
