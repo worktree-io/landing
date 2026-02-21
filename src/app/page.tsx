@@ -384,7 +384,7 @@ function EditorSection() {
 /* Install */
 function InstallSection() {
   return (
-    <section className="install-section">
+    <section id="install" className="install-section">
       <div className="section-inner">
         <p className="section-eyebrow">Get started</p>
         <h2 className="section-title install-title">Install Worktree</h2>
