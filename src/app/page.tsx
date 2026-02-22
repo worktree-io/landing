@@ -1,6 +1,7 @@
 import { Nav } from "./nav";
 import { Hero } from "./hero";
 import { HowItWorks } from "./how-it-works";
+import { WhySection } from "./why-section";
 import { EditorSection } from "./editor-section";
 import { InstallSection } from "./install-section";
 import { ActionSection } from "./action-section";
@@ -13,6 +14,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <HowItWorks />
+      <WhySection />
       <EditorSection />
       <InstallSection />
       <ActionSection />

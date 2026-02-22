@@ -1379,6 +1379,73 @@ body {
   font-family: var(--font-syne, sans-serif);
 }
 
+/* ── WhySection ──────────────────────────────────────────────────────────── */
+.why-section {
+  padding: 80px 24px;
+  border-top: 1px solid #1c1c24;
+}
+
+.why-header {
+  margin-bottom: 48px;
+}
+
+.why-title {
+  margin-top: 12px;
+}
+
+.why-title-accent {
+  color: #a78bfa;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .why-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.why-card {
+  background: #0d0d10;
+  border: 1px solid #1c1c24;
+  border-radius: 10px;
+  padding: 28px 24px;
+  transition: border-color 0.2s;
+}
+
+.why-card:hover {
+  border-color: #2c2c3a;
+}
+
+.why-card-icon {
+  margin-bottom: 20px;
+}
+
+.why-card-title {
+  font-family: var(--font-syne, sans-serif);
+  font-weight: 700;
+  font-size: 1.0rem;
+  letter-spacing: -0.02em;
+  color: #ebebef;
+  margin-bottom: 10px;
+}
+
+.why-card-body {
+  font-size: 0.875rem;
+  color: #9090a8;
+  line-height: 1.7;
+}
+
 /* ── HooksSection ────────────────────────────────────────────────────────── */
 .hooks-section {
   padding: 80px 24px;
