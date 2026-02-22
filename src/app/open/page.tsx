@@ -47,7 +47,6 @@ function InstallGuide() {
   return (
     <div className="install-guide anim-fade-up">
       <div className="install-guide-body">
-        {/* Step 1: Install */}
         <div className="guide-step">
           <div className="guide-step-label">1 — Install</div>
           <div className="code-block">
@@ -55,8 +54,6 @@ function InstallGuide() {
             {INSTALL_CMD}
           </div>
         </div>
-
-        {/* Step 2: Setup */}
         <div className="guide-step">
           <div className="guide-step-label">2 — Setup</div>
           <div className="code-block">
@@ -68,6 +65,175 @@ function InstallGuide() {
           </p>
         </div>
       </div>
+    </div>
+  );
+}
+
+function NoParamsView() {
+  return (
+    <div className="no-params-center anim-fade-up">
+      <div className="no-params-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path
+            d="M10 6v5M10 14h.01M19 10A9 9 0 1 1 1 10a9 9 0 0 1 18 0Z"
+            stroke="#9090a8"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
+      <h1 className="no-params-title">No issue specified</h1>
+      <p className="no-params-body">
+        This page is meant to be opened from a GitHub issue comment.
+        The link should include{" "}
+        <code className="inline-code">?owner=…&repo=…&issue=…</code>{" "}
+        parameters.
+      </p>
+      <Link href="/" className="btn-ghost">
+        ← Back to home
+      </Link>
+    </div>
+  );
+}
+
+function LoadingView() {
+  return (
+    <div className="loading-center">
+      <div className="spinner-lg anim-spin" />
+    </div>
+  );
+}
+
+interface OpeningFeedbackProps {
+  onConfirm: () => void;
+  onInstall: () => void;
+  onRetry: () => void;
+}
+
+function OpeningFeedback({ onConfirm, onInstall, onRetry }: OpeningFeedbackProps) {
+  return (
+    <div className="anim-fade-up d-300">
+      <div className="confirm-section">
+        <p className="confirm-question">Did your editor open?</p>
+        <div className="confirm-actions">
+          <button onClick={onConfirm} className="btn-accent btn--flex1">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path
+                d="M1.5 6.5l3.5 3.5 6.5-7"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Yes, it opened
+          </button>
+          <button onClick={onInstall} className="btn-ghost btn--flex1">
+            No, install Worktree
+          </button>
+        </div>
+      </div>
+      <button onClick={onRetry} className="retry-btn">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+          <path
+            d="M1 5.5A4.5 4.5 0 0 1 9.7 3M10 5.5A4.5 4.5 0 0 1 1.3 8"
+            stroke="currentColor"
+            strokeWidth="1.3"
+            strokeLinecap="round"
+          />
+          <path d="M10 1.5V3.5H8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M1 9.5V7.5H3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        Try again
+      </button>
+    </div>
+  );
+}
+
+interface OpeningViewProps {
+  params: IssueParams;
+  phase: "opening" | "success";
+  onConfirm: () => void;
+  onInstall: () => void;
+  onRetry: () => void;
+}
+
+function OpeningView({ params, phase, onConfirm, onInstall, onRetry }: OpeningViewProps) {
+  return (
+    <div className="phase-content">
+      <div className="status-row anim-fade-up">
+        {phase === "opening" ? (
+          <>
+            <div className="spinner-sm anim-spin" />
+            <div className="status-info">
+              <div className="status-label status-label--opening">Opening workspace</div>
+              <div className="status-detail">Launching Worktree daemon…</div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="status-icon-success">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M2 7l3.5 3.5L12 3"
+                  stroke="#3effa0"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <div className="status-info">
+              <div className="status-label status-label--success">Workspace opened</div>
+              <div className="status-detail">Your editor should be in focus</div>
+            </div>
+          </>
+        )}
+      </div>
+      <IssueCard params={params} />
+      {phase === "opening" && (
+        <OpeningFeedback onConfirm={onConfirm} onInstall={onInstall} onRetry={onRetry} />
+      )}
+      {phase === "success" && (
+        <div className="anim-fade-up">
+          <p className="close-tab-text">You can close this tab.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface InstallViewProps {
+  params: IssueParams | null;
+  onRetry: () => void;
+}
+
+function InstallView({ params, onRetry }: InstallViewProps) {
+  return (
+    <div className="phase-content">
+      <div className="install-phase-header anim-fade-up">
+        <div className="not-detected-row">
+          <div className="not-detected-dot" />
+          <span className="not-detected-label">Worktree not detected</span>
+        </div>
+        <h1 className="install-phase-title">
+          Install Worktree to open this workspace
+        </h1>
+        {params && (
+          <p className="install-phase-body">
+            Once installed, come back and click the issue link again.
+          </p>
+        )}
+      </div>
+      {params && <IssueCard params={params} />}
+      <InstallGuide />
+      {params && (
+        <div className="install-try-again">
+          <button onClick={onRetry} className="btn-ghost btn-accent--full">
+            I installed it — try opening again
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -93,15 +259,11 @@ export default function OpenPage() {
     setParams(p);
     setPhase("opening");
 
-    // Trigger the custom URL scheme once
     if (schemeTriggered.current) return;
     schemeTriggered.current = true;
-    // window.location.href doesn't navigate away for custom URL schemes —
-    // the browser hands off to the registered handler and stays on the page.
     window.location.href = buildWorktreeUrl(p);
   }, []);
 
-  /* ── retry: re-trigger the scheme ── */
   function handleRetry() {
     if (!params) return;
     schemeTriggered.current = false;
@@ -111,206 +273,32 @@ export default function OpenPage() {
 
   return (
     <div className="open-page">
-      {/* Nav */}
       <header className="open-nav">
         <Link href="/" className="open-nav-brand">Worktree</Link>
-        <a
-          href={GITHUB_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="open-nav-link"
-        >
+        <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="open-nav-link">
           GitHub
         </a>
       </header>
-
-      {/* Main content */}
       <main className="open-main">
         <div className="open-content">
-
-          {/* ── NO PARAMS ─────────────────────────────────────────── */}
-          {phase === "no-params" && (
-            <div className="no-params-center anim-fade-up">
-              <div className="no-params-icon">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M10 6v5M10 14h.01M19 10A9 9 0 1 1 1 10a9 9 0 0 1 18 0Z"
-                    stroke="#9090a8"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
-              <h1 className="no-params-title">No issue specified</h1>
-              <p className="no-params-body">
-                This page is meant to be opened from a GitHub issue comment.
-                The link should include{" "}
-                <code className="inline-code">?owner=…&repo=…&issue=…</code>{" "}
-                parameters.
-              </p>
-              <Link href="/" className="btn-ghost">
-                ← Back to home
-              </Link>
-            </div>
-          )}
-
-          {/* ── LOADING ──────────────────────────────────────────── */}
-          {phase === "loading" && (
-            <div className="loading-center">
-              <div className="spinner-lg anim-spin" />
-            </div>
-          )}
-
-          {/* ── OPENING ──────────────────────────────────────────── */}
+          {phase === "no-params" && <NoParamsView />}
+          {phase === "loading" && <LoadingView />}
           {(phase === "opening" || phase === "success") && params && (
-            <div className="phase-content">
-              {/* Status row */}
-              <div className="status-row anim-fade-up">
-                {phase === "opening" ? (
-                  <>
-                    <div className="spinner-sm anim-spin" />
-                    <div className="status-info">
-                      <div className="status-label status-label--opening">
-                        Opening workspace
-                      </div>
-                      <div className="status-detail">
-                        Launching Worktree daemon…
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="status-icon-success">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path
-                          d="M2 7l3.5 3.5L12 3"
-                          stroke="#3effa0"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div className="status-info">
-                      <div className="status-label status-label--success">
-                        Workspace opened
-                      </div>
-                      <div className="status-detail">
-                        Your editor should be in focus
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-
-              {/* Issue card */}
-              <IssueCard params={params} />
-
-              {/* Confirmation / feedback */}
-              {phase === "opening" && (
-                <div className="anim-fade-up d-300">
-                  <div className="confirm-section">
-                    <p className="confirm-question">Did your editor open?</p>
-                    <div className="confirm-actions">
-                      <button
-                        onClick={() => setPhase("success")}
-                        className="btn-accent btn--flex1"
-                      >
-                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                          <path
-                            d="M1.5 6.5l3.5 3.5 6.5-7"
-                            stroke="currentColor"
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        Yes, it opened
-                      </button>
-                      <button
-                        onClick={() => setPhase("install")}
-                        className="btn-ghost btn--flex1"
-                      >
-                        No, install Worktree
-                      </button>
-                    </div>
-                  </div>
-
-                  <button onClick={handleRetry} className="retry-btn">
-                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                      <path
-                        d="M1 5.5A4.5 4.5 0 0 1 9.7 3M10 5.5A4.5 4.5 0 0 1 1.3 8"
-                        stroke="currentColor"
-                        strokeWidth="1.3"
-                        strokeLinecap="round"
-                      />
-                      <path d="M10 1.5V3.5H8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M1 9.5V7.5H3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Try again
-                  </button>
-                </div>
-              )}
-
-              {phase === "success" && (
-                <div className="anim-fade-up">
-                  <p className="close-tab-text">You can close this tab.</p>
-                </div>
-              )}
-            </div>
+            <OpeningView
+              params={params}
+              phase={phase}
+              onConfirm={() => setPhase("success")}
+              onInstall={() => setPhase("install")}
+              onRetry={handleRetry}
+            />
           )}
-
-          {/* ── INSTALL ──────────────────────────────────────────── */}
-          {phase === "install" && (
-            <div className="phase-content">
-              {/* Header */}
-              <div className="install-phase-header anim-fade-up">
-                <div className="not-detected-row">
-                  <div className="not-detected-dot" />
-                  <span className="not-detected-label">Worktree not detected</span>
-                </div>
-                <h1 className="install-phase-title">
-                  Install Worktree to open this workspace
-                </h1>
-                {params && (
-                  <p className="install-phase-body">
-                    Once installed, come back and click the issue link again.
-                  </p>
-                )}
-              </div>
-
-              {/* Issue context if available */}
-              {params && <IssueCard params={params} />}
-
-              {/* Install guide */}
-              <InstallGuide />
-
-              {/* Try again link */}
-              {params && (
-                <div className="install-try-again">
-                  <button
-                    onClick={handleRetry}
-                    className="btn-ghost btn-accent--full"
-                  >
-                    I installed it — try opening again
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
+          {phase === "install" && <InstallView params={params} onRetry={handleRetry} />}
         </div>
       </main>
-
-      {/* Footer */}
       <footer className="open-footer">
         <span className="open-footer-text">Worktree — open source</span>
         <span className="open-footer-sep">·</span>
-        <a
-          href={GITHUB_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="open-footer-link"
-        >
+        <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="open-footer-link">
           GitHub
         </a>
       </footer>
