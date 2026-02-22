@@ -11,7 +11,7 @@ jobs:
     permissions:
       issues: write
     steps:
-      - uses: worktree-io/action@v1`;
+      - uses: worktree-io/comment-action@v1`;
 
 export function ActionSection() {
   return (

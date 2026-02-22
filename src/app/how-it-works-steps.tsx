@@ -41,7 +41,7 @@ export const FLOW_STEPS: Step[] = [
     n: "03",
     title: "Issue opens",
     body: `The action triggers and posts an "Open workspace" link as a comment. Nothing for you to do.`,
-    detail: "worktree-io/action@v1",
+    detail: "worktree-io/comment-action@v1",
     icon: CommentIcon,
   },
   {
