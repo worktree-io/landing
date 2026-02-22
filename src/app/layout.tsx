@@ -26,6 +26,9 @@ export const metadata: Metadata = {
       "Click any issue link and your editor opens with a local workspace. No config, no friction.",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
