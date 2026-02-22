@@ -6,9 +6,8 @@ import config from "eslint-config-agent";
 const uiOverrides = {
   files: ["src/**/*.{ts,tsx}"],
   rules: {
-    // Nullish coalescing and optional chaining are idiomatic in React/TS UI code
+    // Nullish coalescing is idiomatic in React/TS UI code
     "no-restricted-syntax": "off",
-    "no-optional-chaining/no-optional-chaining": "off",
     // Navigation links (e.g. GitHub) are legitimate hardcoded values in UI
     "default/no-hardcoded-urls": "off",
   },

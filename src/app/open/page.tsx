@@ -45,9 +45,9 @@ export default function OpenPage() {
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
-    const owner = sp.get("owner")?.trim() ?? "";
-    const repo = sp.get("repo")?.trim() ?? "";
-    const issue = sp.get("issue")?.trim() ?? "";
+    const owner = (sp.get("owner") ?? "").trim();
+    const repo = (sp.get("repo") ?? "").trim();
+    const issue = (sp.get("issue") ?? "").trim();
 
     if (!owner || !repo || !issue) {
       setPhase("no-params");
