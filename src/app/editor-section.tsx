@@ -1,11 +1,7 @@
+import { EDITORS } from "@/lib/editors";
+
 export function EditorSection() {
-  const commands = [
-    { editor: "VS Code", cmd: "code ." },
-    { editor: "JetBrains IDEs", cmd: "idea ." },
-    { editor: "Zed", cmd: "zed ." },
-    { editor: "Neovim", cmd: "nvim ." },
-    { editor: "Custom", cmd: "open -a 'My Editor' ." },
-  ];
+  const commands = EDITORS.map((e) => ({ editor: e.name, cmd: e.cmd }));
 
   return (
     <section className="editor-section">
