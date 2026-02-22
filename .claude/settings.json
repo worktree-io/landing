@@ -28,7 +28,8 @@
       "Bash(npx playwright test --update-snapshots)",
       "Bash(gh repo view:*)",
       "Bash(command -v:*)",
-      "mcp__playwright__browser_evaluate"
+      "mcp__playwright__browser_evaluate",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": ["Bash(gh issue create:*)"]
   },
