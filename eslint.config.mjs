@@ -8,9 +8,15 @@ const uiOverrides = {
   rules: {
     // Nullish coalescing is idiomatic in React/TS UI code
     "no-restricted-syntax": "off",
-    // Navigation links (e.g. GitHub) are legitimate hardcoded values in UI
+  },
+};
+
+// URL strings are centralized in these files; all other src files must reference these constants.
+const urlConstantsOverride = {
+  files: ["src/lib/github-url.ts", "src/lib/runner-url.ts"],
+  rules: {
     "default/no-hardcoded-urls": "off",
   },
 };
 
-export default [...config, uiOverrides];
+export default [...config, uiOverrides, urlConstantsOverride];
