@@ -943,6 +943,38 @@ body {
 
 .action-code-wrap { max-width: 620px; }
 
+.integrations-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.integrations-grid > * {
+  min-width: 0;
+}
+
+@media (min-width: 860px) {
+  .integrations-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.integration-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-syne, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9090a8;
+  background: #0d0d10;
+  border: 1px solid #1c1c24;
+  border-radius: 20px;
+  padding: 3px 10px 3px 8px;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+
 .action-code-block {
   border: 1px solid rgba(167, 139, 250, 0.2);
   border-radius: 10px;
