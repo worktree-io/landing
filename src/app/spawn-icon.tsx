@@ -7,7 +7,7 @@ interface SpawnIconProps {
 }
 
 export function SpawnIcon({ size, className, style }: SpawnIconProps) {
-  const s = size ?? 16;
+  const s = size !== undefined ? size : 16;
   return (
     <svg
       width={s}
