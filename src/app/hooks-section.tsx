@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { ArrowRight } from "lucide-react";
 import { HooksConfigCol } from "./hooks-config-col";
 import { HooksVarsCol } from "./hooks-vars-col";
 
@@ -38,9 +39,7 @@ export function HooksSection() {
                 </div>
                 {i < FLOW_STEPS.length - 1 && (
                   <div className="flow-arrow">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 8h10M9 4l4 4-4 4" />
-                    </svg>
+                    <ArrowRight size={16} strokeWidth={1.5} />
                   </div>
                 )}
               </Fragment>

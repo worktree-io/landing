@@ -1,3 +1,4 @@
+import { ArrowRight, Download } from "lucide-react";
 import { GitHubMockup } from "./github-mockup";
 import { WorkspaceResult } from "./workspace-result";
 import { GITHUB_URL } from "@/lib/github-url";
@@ -26,15 +27,7 @@ export function Hero() {
 
           <div className="hero-cta anim-fade-up d-300">
             <a href="#install" className="btn-accent">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path
-                  d="M7 1v9M3 7l4 4 4-4M1 12h12"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Download size={14} strokeWidth={1.6} />
               Download
             </a>
             <a
@@ -53,15 +46,7 @@ export function Hero() {
 
         <div className="anim-fade-up d-400">
           <div className="hero-mockup-caption">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M1 7h12M8 3l5 4-5 4"
-                stroke="#3e3e50"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ArrowRight size={14} color="#3e3e50" strokeWidth={1.4} />
             <span className="hero-mockup-caption-text">
               GitHub Action posts this comment automatically on every new issue
             </span>

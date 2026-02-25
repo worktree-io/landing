@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { SpawnIcon } from "./spawn-icon";
 import { GITHUB_URL } from "@/lib/github-url";
 
@@ -16,15 +17,7 @@ export function Nav() {
           className="nav-link"
         >
           GitHub
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-            <path
-              d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <ArrowUpRight size={11} strokeWidth={1.5} />
         </a>
       </div>
     </header>

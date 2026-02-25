@@ -1,17 +1,11 @@
 import Link from "next/link";
+import { Info } from "lucide-react";
 
 export function NoParamsView() {
   return (
     <div className="no-params-center anim-fade-up">
       <div className="no-params-icon">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path
-            d="M10 6v5M10 14h.01M19 10A9 9 0 1 1 1 10a9 9 0 0 1 18 0Z"
-            stroke="#9090a8"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
+        <Info size={20} color="#9090a8" strokeWidth={1.5} />
       </div>
       <h1 className="no-params-title">No issue specified</h1>
       <p className="no-params-body">

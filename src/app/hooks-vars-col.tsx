@@ -1,3 +1,5 @@
+import { Info } from "lucide-react";
+
 const VARS = [
   { name: "{{owner}}", desc: "GitHub username or org that owns the repo" },
   { name: "{{repo}}", desc: "Repository name" },
@@ -24,10 +26,7 @@ export function HooksVarsCol() {
 
       <div className="hooks-tip">
         <div className="hooks-tip-header">
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-            <circle cx="6.5" cy="6.5" r="5.5" stroke="#a78bfa" strokeWidth="1.2" />
-            <path d="M6.5 5v4M6.5 3.5v.5" stroke="#a78bfa" strokeWidth="1.3" strokeLinecap="round" />
-          </svg>
+          <Info size={13} color="#a78bfa" strokeWidth={1.3} />
           <span className="hooks-tip-label">Tip</span>
         </div>
         <p className="hooks-tip-body">
