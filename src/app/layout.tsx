@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Syne, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
+import { GA_MEASUREMENT_ID } from "@/lib/analytics-url";
+import { GA_SCRIPT_URL } from "@/lib/analytics-script-url";
 import "./globals.css";
 
 const syne = Syne({
@@ -38,6 +41,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script src={GA_SCRIPT_URL} strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      </head>
       <body className={`${syne.variable} ${jetbrainsMono.variable}`}>
         {children}
       </body>
