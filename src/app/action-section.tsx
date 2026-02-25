@@ -1,4 +1,5 @@
-import { AzureIcon, GithubIcon, IntegrationBlock } from "./integration-block";
+import { AzureIcon, GithubIcon, JiraIcon, IntegrationBlock } from "./integration-block";
+import { JIRA_WEBHOOK_URL } from "@/lib/jira-webhook-url";
 
 const GITHUB_YAML = `name: Worktree
 on:
@@ -33,6 +34,29 @@ const adoCaption = (
   </>
 );
 
+const JIRA_ENV = `JIRA_HOST=your-org.atlassian.net
+JIRA_USER_EMAIL=you@example.com
+JIRA_API_TOKEN=your-api-token
+GITHUB_OWNER=your-org
+GITHUB_REPO=your-repo`;
+
+const jiraCaption = (
+  <>
+    Deploy{" "}
+    <a
+      className="action-caption-link"
+      href={JIRA_WEBHOOK_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      jira-comment-webhook
+    </a>
+    {" "}with these env vars, then add an{" "}
+    <span className="action-accent">Issue Created</span> webhook trigger in
+    Jira Automation pointing at your server.
+  </>
+);
+
 export function ActionSection() {
   return (
     <section className="action-section">
@@ -60,6 +84,13 @@ export function ActionSection() {
             filename="azure-pipelines.yml"
             yaml={ADO_YAML}
             caption={adoCaption}
+          />
+          <IntegrationBlock
+            chip="Jira"
+            icon={<JiraIcon />}
+            filename=".env"
+            yaml={JIRA_ENV}
+            caption={jiraCaption}
           />
         </div>
       </div>

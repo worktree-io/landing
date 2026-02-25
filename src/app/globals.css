@@ -959,6 +959,12 @@ body {
   }
 }
 
+@media (min-width: 1280px) {
+  .integrations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .integration-chip {
   display: inline-flex;
   align-items: center;
@@ -1039,6 +1045,12 @@ body {
 .action-caption-code {
   font-family: var(--font-jetbrains-mono, monospace);
   font-size: 0.75rem;
+}
+
+.action-caption-link {
+  color: #9090a8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* ── Footer ──────────────────────────────────────────────────────────────── */

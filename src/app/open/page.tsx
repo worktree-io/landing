@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { type IssueParams, buildWorktreeUrl } from "./issue-card";
 import { NoParamsView } from "./no-params-view";
 import { OpeningView } from "./opening-view";
 import { InstallView } from "./install-view";
-import { GITHUB_URL } from "@/lib/github-url";
+import { OpenNav, OpenFooter } from "./open-layout";
 
 type Phase =
   | "loading"    // reading URL params
@@ -15,27 +14,25 @@ type Phase =
   | "install"    // user says it didn't open → show install guide
   | "no-params"; // no valid params in URL
 
-function OpenNav() {
-  return (
-    <header className="open-nav">
-      <Link href="/" className="open-nav-brand">Worktree</Link>
-      <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="open-nav-link">
-        GitHub
-      </a>
-    </header>
-  );
+function get(sp: URLSearchParams, key: string): string {
+  const val = sp.get(key);
+  return (val !== null ? val : "").trim();
 }
 
-function OpenFooter() {
-  return (
-    <footer className="open-footer">
-      <span className="open-footer-text">Worktree — open source</span>
-      <span className="open-footer-sep">·</span>
-      <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="open-footer-link">
-        GitHub
-      </a>
-    </footer>
-  );
+function resolveParams(sp: URLSearchParams): IssueParams | null {
+  const jiraIssueKey = get(sp, "jira_issue_key");
+  if (jiraIssueKey) {
+    const host = get(sp, "jira_host");
+    const owner = get(sp, "owner");
+    const repo = get(sp, "repo");
+    if (!host || !owner || !repo) return null;
+    return { kind: "jira", host, issueKey: jiraIssueKey, owner, repo };
+  }
+  const owner = get(sp, "owner");
+  const repo = get(sp, "repo");
+  const issue = get(sp, "issue");
+  if (!owner || !repo || !issue) return null;
+  return { kind: "github", owner, repo, issue };
 }
 
 export default function OpenPage() {
@@ -45,22 +42,10 @@ export default function OpenPage() {
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
-    const ownerVal = sp.get("owner");
-    const repoVal = sp.get("repo");
-    const issueVal = sp.get("issue");
-    const owner = (ownerVal !== null ? ownerVal : "").trim();
-    const repo = (repoVal !== null ? repoVal : "").trim();
-    const issue = (issueVal !== null ? issueVal : "").trim();
-
-    if (!owner || !repo || !issue) {
-      setPhase("no-params");
-      return;
-    }
-
-    const p = { owner, repo, issue };
+    const p = resolveParams(sp);
+    if (!p) { setPhase("no-params"); return; }
     setParams(p);
     setPhase("opening");
-
     if (schemeTriggered.current) return;
     schemeTriggered.current = true;
     window.location.href = buildWorktreeUrl(p);

@@ -18,6 +18,15 @@ export function AzureIcon() {
   );
 }
 
+export function JiraIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M8 1L1 8l7 7 7-7-7-7z" opacity="0.9" />
+      <path d="M8 4.5L4.5 8 8 11.5 11.5 8 8 4.5z" fill="#0d0d10" />
+    </svg>
+  );
+}
+
 interface IntegrationBlockProps {
   chip: string;
   icon: ReactNode;
