@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { ArrowRight } from "lucide-react";
 import { SETUP_STEPS, FLOW_STEPS, type Step } from "./how-it-works-steps";
 
 const DELAY_CLASSES = ["d-100", "d-200", "d-300", "d-400", "d-500"];
@@ -23,14 +24,6 @@ function StepCard({ step, delayClass }: { step: Step; delayClass: string }) {
   );
 }
 
-function ArrowIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 8h10M9 4l4 4-4 4" />
-    </svg>
-  );
-}
-
 export function HowItWorks() {
   return (
     <section className="how-section">
@@ -46,7 +39,7 @@ export function HowItWorks() {
           <p className="group-label">Set up once</p>
           <div className="steps-grid-2">
             <StepCard step={SETUP_STEPS[0]} delayClass={DELAY_CLASSES[0]} />
-            <div className="step-connector"><ArrowIcon /></div>
+            <div className="step-connector"><ArrowRight size={16} strokeWidth={1.5} /></div>
             <StepCard step={SETUP_STEPS[1]} delayClass={DELAY_CLASSES[1]} />
           </div>
         </div>
@@ -58,7 +51,7 @@ export function HowItWorks() {
               <Fragment key={step.n}>
                 <StepCard step={step} delayClass={DELAY_CLASSES[i + 2]} />
                 {i < FLOW_STEPS.length - 1 && (
-                  <div className="step-connector"><ArrowIcon /></div>
+                  <div className="step-connector"><ArrowRight size={16} strokeWidth={1.5} /></div>
                 )}
               </Fragment>
             ))}

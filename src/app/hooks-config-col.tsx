@@ -1,3 +1,4 @@
+import { Info } from "lucide-react";
 import { CopyButton } from "./copy-button";
 
 const HOOKS_TOML = `[hooks]
@@ -27,16 +28,7 @@ export function HooksConfigCol() {
       </div>
 
       <div className="hooks-failure-note">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          className="hooks-failure-icon"
-        >
-          <circle cx="7" cy="7" r="5.5" stroke="#3e3e50" strokeWidth="1.2" />
-          <path d="M7 6.5v3M7 4.5v.5" stroke="#3e3e50" strokeWidth="1.3" strokeLinecap="round" />
-        </svg>
+        <Info size={14} color="#3e3e50" strokeWidth={1.3} className="hooks-failure-icon" />
         <p className="hooks-failure-text">
           A non-zero exit code from either hook shows a warning but does
           not stop the workspace from opening.

@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { FileCode, Info } from "lucide-react";
 import { CopyButton } from "./copy-button";
 
 export function GithubIcon() {
@@ -45,10 +46,7 @@ export function IntegrationBlock({ chip, icon, filename, yaml, caption }: Integr
       <div className="action-code-block">
         <div className="action-code-header">
           <div className="action-code-file">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-              <rect x="1" y="1" width="11" height="11" rx="2" stroke="#a78bfa" strokeWidth="1.2" />
-              <path d="M4 5h5M4 7.5h3" stroke="#a78bfa" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
+            <FileCode size={13} color="#a78bfa" strokeWidth={1.2} />
             <code className="action-code-filename">{filename}</code>
           </div>
           <CopyButton text={yaml} />
@@ -56,10 +54,7 @@ export function IntegrationBlock({ chip, icon, filename, yaml, caption }: Integr
         <pre className="action-pre">{yaml}</pre>
       </div>
       <div className="action-caption">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="action-caption-icon">
-          <circle cx="7" cy="7" r="5.5" stroke="#3e3e50" strokeWidth="1.2" />
-          <path d="M7 6.5v3M7 4.5v.5" stroke="#3e3e50" strokeWidth="1.3" strokeLinecap="round" />
-        </svg>
+        <Info size={14} color="#3e3e50" strokeWidth={1.3} className="action-caption-icon" />
         <p className="action-caption-text">{caption}</p>
       </div>
     </div>
