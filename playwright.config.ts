@@ -4,6 +4,7 @@ const { CI, PLAYWRIGHT_BASE_URL } = process.env;
 
 export default defineConfig({
   testDir: "./tests",
+  snapshotPathTemplate: "{snapshotDir}/{testFilePath}-snapshots/{arg}-{projectName}{ext}",
   use: {
     baseURL: PLAYWRIGHT_BASE_URL !== undefined ? PLAYWRIGHT_BASE_URL : "http://localhost:3000",
   },

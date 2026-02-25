@@ -10,7 +10,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       deployments: write
       pull-requests: write
 
@@ -49,23 +49,6 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium webkit
 
       - name: Run e2e tests against deployment
-        id: playwright
-        run: pnpm exec playwright test --update-snapshots
-        continue-on-error: true
-        env:
-          PLAYWRIGHT_BASE_URL: ${{ steps.deploy.outputs.url }}
-
-      - name: Commit updated snapshots
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase
-          git add tests/screenshots.spec.ts-snapshots/
-          git diff --cached --quiet || (git commit -m "Update Playwright snapshots [skip ci]" && git push)
-
-      - name: Validate e2e tests
-        if: steps.playwright.outcome == 'failure'
         run: pnpm exec playwright test
         env:
           PLAYWRIGHT_BASE_URL: ${{ steps.deploy.outputs.url }}

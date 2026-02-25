@@ -1,1 +1,10 @@
-pnpm run test:visual
+pnpm run test:visual:update
+
+if ! git diff --quiet -- tests/screenshots.spec.ts-snapshots/ || \
+   [ -n "$(git ls-files --others --exclude-standard tests/screenshots.spec.ts-snapshots/)" ]; then
+  echo ""
+  echo "Screenshots were updated. Commit them before pushing:"
+  echo "  git add tests/screenshots.spec.ts-snapshots/"
+  echo "  git commit --amend --no-edit  # or: git commit -m 'Update screenshots'"
+  exit 1
+fi
