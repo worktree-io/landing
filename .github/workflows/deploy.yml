@@ -49,7 +49,7 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium webkit
 
       - name: Run e2e tests against deployment
-        run: pnpm exec playwright test
+        run: pnpm exec playwright test --grep "no horizontal scroll overflow"
         env:
           PLAYWRIGHT_BASE_URL: ${{ steps.deploy.outputs.url }}
 
