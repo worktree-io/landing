@@ -28,6 +28,13 @@ function resolveParams(sp: URLSearchParams): IssueParams | null {
     if (!host || !owner || !repo) return null;
     return { kind: "jira", host, issueKey: jiraIssueKey, owner, repo };
   }
+  const gitlabIssue = get(sp, "gitlab_issue");
+  if (gitlabIssue) {
+    const owner = get(sp, "owner");
+    const repo = get(sp, "repo");
+    if (!owner || !repo) return null;
+    return { kind: "gitlab", owner, repo, issue: gitlabIssue };
+  }
   const owner = get(sp, "owner");
   const repo = get(sp, "repo");
   const issue = get(sp, "issue");

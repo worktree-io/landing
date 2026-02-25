@@ -1,5 +1,6 @@
 export type IssueParams =
   | { kind: "github"; owner: string; repo: string; issue: string }
+  | { kind: "gitlab"; owner: string; repo: string; issue: string }
   | { kind: "jira"; host: string; issueKey: string; owner: string; repo: string };
 
 export function buildWorktreeUrl(p: IssueParams): string {
@@ -10,6 +11,10 @@ export function buildWorktreeUrl(p: IssueParams): string {
       owner: p.owner,
       repo: p.repo,
     });
+    return `worktree://open?${q.toString()}`;
+  }
+  if (p.kind === "gitlab") {
+    const q = new URLSearchParams({ owner: p.owner, repo: p.repo, issue: p.issue, gitlab: "true" });
     return `worktree://open?${q.toString()}`;
   }
   const q = new URLSearchParams({ owner: p.owner, repo: p.repo, issue: p.issue });
