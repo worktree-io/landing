@@ -30,7 +30,8 @@
       "Bash(command -v:*)",
       "mcp__playwright__browser_evaluate",
       "mcp__ide__getDiagnostics",
-      "Bash(tail:*)"
+      "Bash(tail:*)",
+      "Bash(pnpm install:*)"
     ],
     "deny": ["Bash(gh issue create:*)"]
   },
