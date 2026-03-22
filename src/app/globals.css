@@ -1290,6 +1290,33 @@ body {
   text-align: center;
 }
 
+.success-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.auto-close-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  color: #3e3e50;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+
+.auto-close-toggle:hover { color: #9090a8; }
+
+.auto-close-checkbox {
+  width: 13px;
+  height: 13px;
+  accent-color: #3effa0;
+  cursor: pointer;
+}
+
 /* No-params state */
 .no-params-center { text-align: center; }
 
