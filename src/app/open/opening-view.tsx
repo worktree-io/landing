@@ -3,6 +3,7 @@
 import { Check, RefreshCw } from "lucide-react";
 import type { IssueParams } from "./issue-card";
 import { IssueCard } from "./issue-card";
+import { useAutoClose } from "./use-auto-close";
 
 type OpeningPhase = "opening" | "success";
 
@@ -14,13 +15,7 @@ interface OpeningViewProps {
   onRetry: () => void;
 }
 
-interface ConfirmActionsProps {
-  onSuccess: () => void;
-  onInstall: () => void;
-  onRetry: () => void;
-}
-
-function ConfirmActions({ onSuccess, onInstall, onRetry }: ConfirmActionsProps) {
+function ConfirmActions({ onSuccess, onInstall, onRetry }: Omit<OpeningViewProps, "phase" | "params">) {
   return (
     <div className="anim-fade-up d-300">
       <div className="confirm-section">
@@ -43,7 +38,23 @@ function ConfirmActions({ onSuccess, onInstall, onRetry }: ConfirmActionsProps) 
   );
 }
 
+function SuccessFooter({ autoClose, countdown, onToggle }: { autoClose: boolean; countdown: number; onToggle: (v: boolean) => void }) {
+  return (
+    <div className="anim-fade-up success-footer">
+      <p className="close-tab-text">
+        {autoClose ? `Closing in ${countdown}\u2026` : "You can close this tab."}
+      </p>
+      <label className="auto-close-toggle">
+        <input type="checkbox" checked={autoClose} onChange={(e) => onToggle(e.target.checked)} className="auto-close-checkbox" />
+        Auto-close tab
+      </label>
+    </div>
+  );
+}
+
 export function OpeningView({ phase, params, onSuccess, onInstall, onRetry }: OpeningViewProps) {
+  const { autoClose, countdown, handleToggle } = useAutoClose(phase === "success");
+
   return (
     <div className="phase-content">
       <div className="status-row anim-fade-up">
@@ -67,18 +78,9 @@ export function OpeningView({ phase, params, onSuccess, onInstall, onRetry }: Op
           </>
         )}
       </div>
-
       <IssueCard params={params} />
-
-      {phase === "opening" && (
-        <ConfirmActions onSuccess={onSuccess} onInstall={onInstall} onRetry={onRetry} />
-      )}
-
-      {phase === "success" && (
-        <div className="anim-fade-up">
-          <p className="close-tab-text">You can close this tab.</p>
-        </div>
-      )}
+      {phase === "opening" && <ConfirmActions onSuccess={onSuccess} onInstall={onInstall} onRetry={onRetry} />}
+      {phase === "success" && <SuccessFooter autoClose={autoClose} countdown={countdown} onToggle={handleToggle} />}
     </div>
   );
 }
