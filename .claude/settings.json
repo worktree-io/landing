@@ -31,7 +31,8 @@
       "mcp__playwright__browser_evaluate",
       "mcp__ide__getDiagnostics",
       "Bash(tail:*)",
-      "Bash(pnpm install:*)"
+      "Bash(pnpm install:*)",
+      "Bash(pnpm exec:*)"
     ],
     "deny": ["Bash(gh issue create:*)"]
   },
