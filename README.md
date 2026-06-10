@@ -25,6 +25,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | `/`           | Marketing landing page                                           |
 | `/open`       | URL scheme receiver — accepts `?owner`, `?repo`, `?issue` params and triggers `worktree://open?...` |
 
+The `/open` route is the public URL API consumed by the GitHub Action, CLI, and integrations. See [docs/api-versioning.md](docs/api-versioning.md) for the versioning policy and parameter reference.
+
 ## License
 
 MIT
