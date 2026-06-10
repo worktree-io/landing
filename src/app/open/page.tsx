@@ -3,18 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import { type IssueParams, buildWorktreeUrl } from "./issue-card";
 import { NoParamsView } from "./no-params-view";
-import { UnknownVersionView } from "./unknown-version-view";
 import { OpeningView } from "./opening-view";
 import { InstallView } from "./install-view";
 import { OpenNav, OpenFooter } from "./open-layout";
 
 type Phase =
-  | "loading"         // reading URL params
-  | "opening"         // scheme triggered, awaiting user confirmation
-  | "success"         // user confirmed it opened
-  | "install"         // user says it didn't open → show install guide
-  | "no-params"       // no valid params in URL
-  | "unknown-version"; // unrecognized v= param
+  | "loading"    // reading URL params
+  | "opening"    // scheme triggered, awaiting user confirmation
+  | "success"    // user confirmed it opened
+  | "install"    // user says it didn't open → show install guide
+  | "no-params"; // no valid params in URL
 
 function get(sp: URLSearchParams, key: string): string {
   const val = sp.get(key);
@@ -44,23 +42,13 @@ function resolveParams(sp: URLSearchParams): IssueParams | null {
   return { kind: "github", owner, repo, issue };
 }
 
-const SUPPORTED_VERSIONS: string[] = ["1"];
-
 export default function OpenPage() {
   const [phase, setPhase] = useState<Phase>("loading");
   const [params, setParams] = useState<IssueParams | null>(null);
-  const [urlVersion, setUrlVersion] = useState<string>("1");
   const schemeTriggered = useRef(false);
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
-    const raw = sp.get("v");
-    const v = raw !== null ? raw : "1";
-    setUrlVersion(v);
-    if (!SUPPORTED_VERSIONS.includes(v)) {
-      setPhase("unknown-version");
-      return;
-    }
     const p = resolveParams(sp);
     if (!p) { setPhase("no-params"); return; }
     setParams(p);
@@ -83,7 +71,6 @@ export default function OpenPage() {
       <main className="open-main">
         <div className="open-content">
           {phase === "no-params" && <NoParamsView />}
-        {phase === "unknown-version" && <UnknownVersionView version={urlVersion} />}
           {phase === "loading" && (
             <div className="loading-center">
               <div className="spinner-lg anim-spin" />
