@@ -8,4 +8,15 @@ const urlConstantsOverride = {
   },
 };
 
-export default [...config, urlConstantsOverride];
+// Enforce `import type` for type-only imports so the TypeScript compiler can
+// fully elide them from the emitted JavaScript. Keeps type and value imports
+// distinct, avoids accidental runtime imports / side effects, and plays well
+// with bundlers and `isolatedModules`.
+const typeImportsOverride = {
+  files: ["src/**/*.{ts,tsx}"],
+  rules: {
+    "@typescript-eslint/consistent-type-imports": "error",
+  },
+};
+
+export default [...config, urlConstantsOverride, typeImportsOverride];
