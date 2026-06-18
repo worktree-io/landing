@@ -8,4 +8,13 @@ const urlConstantsOverride = {
   },
 };
 
-export default [...config, urlConstantsOverride];
+// Disallow stray `console.log`/`console.debug`/etc. so debugging leftovers do
+// not ship to production. Intentional diagnostics remain available via
+// `console.warn` / `console.error`.
+const noConsoleOverride = {
+  rules: {
+    "no-console": ["error", { allow: ["warn", "error"] }],
+  },
+};
+
+export default [...config, urlConstantsOverride, noConsoleOverride];
