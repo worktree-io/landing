@@ -22,8 +22,7 @@ export function useAutoClose(active: boolean) {
     intervalRef.current = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
-          clearInterval(intervalRef.current!);
-          intervalRef.current = null;
+          clearTimer();
           window.close();
           return 0;
         }
