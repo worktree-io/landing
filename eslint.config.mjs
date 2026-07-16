@@ -8,6 +8,17 @@ const urlConstantsOverride = {
   },
 };
 
+// Enforce `import type` for type-only imports so the TypeScript compiler can
+// fully elide them from the emitted JavaScript. Keeps type and value imports
+// distinct, avoids accidental runtime imports / side effects, and plays well
+// with bundlers and `isolatedModules`.
+const typeImportsOverride = {
+  files: ["src/**/*.{ts,tsx}"],
+  rules: {
+    "@typescript-eslint/consistent-type-imports": "error",
+  },
+};
+
 // Forbid non-null assertions (`value!`). The `!` operator silently tells the
 // type checker a value can't be null/undefined without any runtime guarantee,
 // so a wrong assumption surfaces as a runtime crash instead of a compile error.
@@ -19,4 +30,4 @@ const noNonNullAssertion = {
   },
 };
 
-export default [...config, urlConstantsOverride, noNonNullAssertion];
+export default [...config, urlConstantsOverride, typeImportsOverride, noNonNullAssertion];
