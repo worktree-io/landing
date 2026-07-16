@@ -18,4 +18,15 @@ const urlConstantsOverride = {
   },
 };
 
-export default [...config, strictEqualityRule, urlConstantsOverride];
+// Forbid non-null assertions (`value!`). The `!` operator silently tells the
+// type checker a value can't be null/undefined without any runtime guarantee,
+// so a wrong assumption surfaces as a runtime crash instead of a compile error.
+// `eslint-config-agent` does not ship this rule. Prefer an explicit guard,
+// optional chaining, or narrowing instead.
+const noNonNullAssertion = {
+  rules: {
+    "@typescript-eslint/no-non-null-assertion": "error",
+  },
+};
+
+export default [...config, strictEqualityRule, urlConstantsOverride, noNonNullAssertion];
