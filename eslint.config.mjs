@@ -8,6 +8,15 @@ const urlConstantsOverride = {
   },
 };
 
+// Disallow stray `console.log`/`console.debug`/etc. so debugging leftovers do
+// not ship to production. Intentional diagnostics remain available via
+// `console.warn` / `console.error`.
+const noConsoleOverride = {
+  rules: {
+    "no-console": ["error", { allow: ["warn", "error"] }],
+  },
+};
+
 // Enforce `import type` for type-only imports so the TypeScript compiler can
 // fully elide them from the emitted JavaScript. Keeps type and value imports
 // distinct, avoids accidental runtime imports / side effects, and plays well
@@ -30,4 +39,4 @@ const noNonNullAssertion = {
   },
 };
 
-export default [...config, urlConstantsOverride, typeImportsOverride, noNonNullAssertion];
+export default [...config, urlConstantsOverride, noConsoleOverride, typeImportsOverride, noNonNullAssertion];
